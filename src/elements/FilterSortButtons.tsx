@@ -10,6 +10,9 @@ const FilterSortButtons = () => {
     const [filterAnchorElement, setFilterAnchorElement] = React.useState<null | HTMLElement>(null);
     const [sortAnchorElement, setSortAnchorElement] = React.useState<null | HTMLElement>(null);
 
+    const [sortType, setSortType] = React.useState<string>("A-Z")
+    const [filterType, setFilterType] = React.useState<string>("")
+
     const handleFilterClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setFilterAnchorElement(event.currentTarget);
     };
@@ -17,6 +20,16 @@ const FilterSortButtons = () => {
     const handleSortClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setSortAnchorElement(event.currentTarget);
     };
+
+    const handleFilterOnClick = (type:string) => {
+        setFilterType(type);
+        console.log(filterType);
+    }
+
+    const handleSortOnClick = (type:string) => {
+        setSortType(type);
+        console.log(sortType);
+    }
 
     const handleClose = () => {
         setFilterAnchorElement(null);
@@ -41,9 +54,9 @@ const FilterSortButtons = () => {
                 open={Boolean(filterAnchorElement)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>Filter Option 1</MenuItem>
-                <MenuItem onClick={handleClose}>Filter Option 2</MenuItem>
-                <MenuItem onClick={handleClose}>Filter Option 3</MenuItem>
+                <MenuItem onClick={() => handleFilterOnClick("desktopComputer")}>Desktop Computer</MenuItem>
+                <MenuItem onClick={() => handleFilterOnClick("laptop")}>Laptop</MenuItem>
+                <MenuItem onClick={() => handleFilterOnClick("netzwerkHardware")}>Netzwerk Hardware</MenuItem>
             </Menu>
 
             {/* Sort Button */}
@@ -63,9 +76,10 @@ const FilterSortButtons = () => {
                 open={Boolean(sortAnchorElement)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>Sort Option 1</MenuItem>
-                <MenuItem onClick={handleClose}>Sort Option 2</MenuItem>
-                <MenuItem onClick={handleClose}>Sort Option 3</MenuItem>
+                <MenuItem onClick={() => handleSortOnClick("A-Z")}>A-Z</MenuItem>
+                <MenuItem onClick={() => handleSortOnClick("Z-A")}>Z-A</MenuItem>
+                <MenuItem onClick={() => handleSortOnClick("g-t")}>Preis (günstig-teuer)</MenuItem>
+                <MenuItem onClick={() => handleSortOnClick("t-g")}>Preis (teuer-günstig)</MenuItem>
             </Menu>
         </div>
     );
