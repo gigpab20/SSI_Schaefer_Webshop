@@ -1,0 +1,7 @@
+.FilterSortButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Set position to relative */
+    margin-top: 20px;
+}
