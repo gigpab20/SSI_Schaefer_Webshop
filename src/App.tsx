@@ -1,26 +1,20 @@
 import React from 'react';
 import './App.css';
 import logo from "./assets/schäfer-logo-removebg.png"
-import pcExample from "./assets/pcExample.jpg"
-import switchExample from "./assets/switchExample.jpg"
 import { InputAdornment, TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import FilterSortButtons from "./elements/FilterSortButtons";
 import {HardwareInt} from "./interface/HardwareInt";
 import {hardwareMock} from "./mockdata/hardwareMock";
-import {log} from "util";
-
-const HardwareCard: React.FC<{ hardwareItem: HardwareInt }> = ({ hardwareItem }) => (
-    <div style={{ width: '20vw', margin: '10px', textAlign: 'center' }}>
-        <img src={hardwareItem.pictureLink} alt={hardwareItem.name} style={{ width: '100%', height: '250px', objectFit: 'cover' }} />
-        <p>{`Name: ${hardwareItem.name}`}</p>
-        <p>{`ID: ${hardwareItem.productNum}`}</p>
-    </div>
-);
+import HardwareCard from "./elements/HardwareCard";
 
 function App() {
 
   const [hardware, setHardware] = React.useState<HardwareInt[]>(hardwareMock)
+
+  const onBuy = (product:HardwareInt) => {
+      console.log(product);
+  }
 
   return (
     <div style={{width: '100%', height: '100%', position: 'relative'}}>
@@ -40,9 +34,12 @@ function App() {
 
           <FilterSortButtons/>
       </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', alignSelf: "center", marginTop: '230px', position: "absolute", marginLeft: "100px", marginRight: "100px" }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', alignSelf: "center", marginTop: '250px', position: "absolute", marginLeft: "100px", marginRight: "100px" }}>
             {hardware.map((item, index) => (
-                <HardwareCard key={index} hardwareItem={item} />
+                <div>
+                    <HardwareCard key={index} hardwareItem={{item, onBuy}}  />
+                </div>
+
             ))}
         </div>
     </div>
