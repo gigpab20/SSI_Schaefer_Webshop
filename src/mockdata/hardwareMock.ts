@@ -24,5 +24,23 @@ export const hardwareMock:HardwareInt[] = [
         productNum: "PC-2022-MNOP",
         price: 1200,
         pictureLink: "https://m.media-amazon.com/images/I/61PF9tD9tOL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+        name: "Network Switch",
+        productNum: "SW-2012-QRST",
+        price: 300,
+        pictureLink: "https://5.imimg.com/data5/SG/QN/MY-2301562/cisco-network-switch-.jpg"
+    },
+    {
+        name: "Network Switch",
+        productNum: "SW-2012-QRST",
+        price: 300,
+        pictureLink: "https://5.imimg.com/data5/SG/QN/MY-2301562/cisco-network-switch-.jpg"
+    },
+    {
+        name: "Network Switch",
+        productNum: "SW-2012-QRST",
+        price: 300,
+        pictureLink: "https://5.imimg.com/data5/SG/QN/MY-2301562/cisco-network-switch-.jpg"
     }
 ]
