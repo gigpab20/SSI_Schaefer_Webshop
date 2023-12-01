@@ -8,8 +8,7 @@ interface HardwareProps {
     onBuy: (product:HardwareInt) => void
 }
 
-const HardwareCard: React.FC<{ hardwareItem: HardwareProps }> = ({ hardwareItem }) => (
-
+const HardwareCard: React.FC<{hardwareItem: HardwareProps}> = ({ hardwareItem }) => (
 
     <div className="hardwareCard">
 

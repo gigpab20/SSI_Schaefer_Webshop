@@ -1,4 +1,6 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import logo from "./assets/schäfer-logo-removebg.png"
 import { InputAdornment, TextField } from '@material-ui/core';
@@ -13,7 +15,10 @@ function App() {
   const [hardware, setHardware] = React.useState<HardwareInt[]>(hardwareMock)
 
   const onBuy = (product:HardwareInt) => {
-      console.log(product);
+      const updatedHardware = hardware.filter(item => item !== product);
+      setHardware(updatedHardware);
+      toast.success(`You've successfully bought: ${product.name}`);
+      console.log(hardware);
   }
 
   return (
@@ -35,6 +40,7 @@ function App() {
           <FilterSortButtons/>
       </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', alignSelf: "center", marginTop: '250px', position: "absolute", marginLeft: "100px", marginRight: "100px" }}>
+            <ToastContainer />
             {hardware.map((item, index) => (
                 <div>
                     <HardwareCard key={index} hardwareItem={{item, onBuy}}  />
