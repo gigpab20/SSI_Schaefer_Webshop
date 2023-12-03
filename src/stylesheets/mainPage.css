@@ -1,0 +1,24 @@
+.upperYellowBar {
+    width: 100vw;
+    height: 8vh;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: #FFED00;
+}
+
+.logoImage {
+    width: auto;
+    height: 8vh;
+    left: 10vw;
+    position: absolute;
+}
+
+.yellowFilterAndSearchBar {
+    width: 100vw;
+    height: 8vh;
+    left: 0;
+    top: 18.75vh;
+    position: absolute;
+    background: #FFED00;
+}

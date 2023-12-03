@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../stylesheets/HardwareCard.css';
+import '../stylesheets/hardwareCard.css';
 import {HardwareInt} from "../interface/HardwareInt";
 
 interface HardwareProps {

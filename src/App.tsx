@@ -1,4 +1,5 @@
 import React from 'react';
+import "../src/stylesheets/mainPage.css"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
@@ -23,11 +24,12 @@ function App() {
 
   return (
     <div style={{width: '100%', height: '100%', position: 'relative'}}>
-      <div style={{width: "100vw", height: 75, left: 0, top: 0, position: 'absolute', background: '#FFED00'}} />
-      <img style={{width: "auto", height: 80, left: 190, top: -2, position: 'absolute'}} src={logo} />
+      <div className={"upperYellowBar"}/>
+      <img src={logo} className={"logoImage"} />
       
-      <div style={{width: "100vw", height: 75, left: 0, top: "18.75vh", position: 'absolute', background: "#FFED00"}}>
-          <TextField  style={{width: "300px", height: "40px", marginLeft: "20px", marginTop: "18px"}} InputProps={{
+      <div className={"yellowFilterAndSearchBar"}>
+          <TextField  style={{width: "16vw", height: "8vh", marginLeft: "1.5vw", marginTop: "2vh"}} className={"customSearchTextField"} InputProps={{
+              // idk why, but if I move the style tag to an external stylesheet then its broken, so I'm just gonna let that sit here
             startAdornment: (
               <InputAdornment position="start">
                 <SearchIcon/>
