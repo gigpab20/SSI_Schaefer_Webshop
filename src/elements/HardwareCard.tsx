@@ -13,8 +13,8 @@ const HardwareCard: React.FC<HardwareProps> = ({ item, onBuy }) => (
             <p>{`ID: ${item.ARTIKEL}`}</p>
             <p>{`BEZEICH: ${item.BEZEICH}`}</p>
             <p>{`SERIENNR: ${item.SERIENNR}`}</p>
-            <p>{`SERIENNR: ${item.SERIENNR}`}</p>
-            <p>{`SERIENNR: ${item.SERIENNR}`}</p>
+            <p>{`ANLAGENNR: ${item.ANLAGENNR}`}</p>
+            <p>{`WE_DATUM: ${item.WE_DATUM}`}</p>
         </div>
         <button className="buyButton" onClick={() => onBuy(item)}>Kaufen</button>
     </div>
