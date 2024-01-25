@@ -1,32 +1,23 @@
 import React from 'react';
-
 import '../stylesheets/hardwareCard.css';
 import {HardwareInt} from "../interface/HardwareInt";
 
 interface HardwareProps {
-    item:HardwareInt;
-    onBuy: (product:HardwareInt) => void
+    item: HardwareInt; // Deine Hardware Interface
+    onBuy: (product: HardwareInt) => void; // Kauffunktion
 }
 
-const HardwareCard: React.FC<{hardwareItem: HardwareProps}> = ({ hardwareItem }) => (
-
+const HardwareCard: React.FC<HardwareProps> = ({ item, onBuy }) => (
     <div className="hardwareCard">
-
-        <img src={hardwareItem.item.pictureLink} alt={hardwareItem.item.name} />
-
-        <p>{`Name: ${hardwareItem.item.name}`}</p>
-
-        <p>{`ID: ${hardwareItem.item.productNum}`}</p>
-
-        <p>{`Preis: ${hardwareItem.item.price}€`}</p>
-
-        <button onClick={() => hardwareItem.onBuy(hardwareItem.item)}>Buy</button>
-
-
+        <div className="hardwareDetails">
+            <p>{`ID: ${item.ARTIKEL}`}</p>
+            <p>{`BEZEICH: ${item.BEZEICH}`}</p>
+            <p>{`SERIENNR: ${item.SERIENNR}`}</p>
+            <p>{`SERIENNR: ${item.SERIENNR}`}</p>
+            <p>{`SERIENNR: ${item.SERIENNR}`}</p>
+        </div>
+        <button className="buyButton" onClick={() => onBuy(item)}>Kaufen</button>
     </div>
-
-
 );
-
 
 export default HardwareCard;

@@ -1,7 +1,7 @@
 import {HardwareInt} from "../interface/HardwareInt";
 
 export const hardwareMock:HardwareInt[] = [
-    {
+    /*{
         name: "Office PC",
         productNum: "PC-2022-ABCD",
         price: 1200,
@@ -49,5 +49,5 @@ export const hardwareMock:HardwareInt[] = [
         price: 300,
         pictureLink: "https://5.imimg.com/data5/SG/QN/MY-2301562/cisco-network-switch-.jpg",
         category: "netzwerkHardware"
-    }
+    }*/
 ]
