@@ -16,9 +16,7 @@ const express_1 = __importDefault(require("express"));
 const util_service_db_1 = require("../src/db/util.service.db");
 let router = express_1.default.Router();
 router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const connection = yield util_service_db_1.oracledb.getConnection();
-    const result = yield connection.execute('SELECT * FROM ARTIKELTABLE');
-    console.log(result.rows);
-    res.send(result.rows);
+    const result = yield (0, util_service_db_1.getAll)();
+    res.json(result);
 }));
 module.exports = router;

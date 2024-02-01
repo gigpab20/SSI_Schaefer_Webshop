@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect , useState} from 'react';
 import "../src/stylesheets/mainPage.css"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,17 +8,28 @@ import { InputAdornment, TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import FilterSortButtons from "./elements/FilterSortButtons";
 import {HardwareInt} from "./interface/HardwareInt";
-import {hardwareMock} from "./mockdata/hardwareMock";
 import HardwareCard from "./elements/HardwareCard";
+import { ProductSevice } from './Service/ProductSevice';
 
 function App() {
 
-  const [hardware, setHardware] = React.useState<HardwareInt[]>(hardwareMock)
+ const [hardware, setHardware] = useState<HardwareInt[]>([]);
+
+
+    useEffect(() => {
+        ProductSevice.getSong().then(
+            products => {
+                setHardware(products);
+               
+
+            }
+        );
+    }, []);
 
   const onBuy = (product:HardwareInt) => {
       const updatedHardware = hardware.filter(item => item !== product);
       setHardware(updatedHardware);
-      toast.success(`You've successfully bought: ${product.name}`);
+      toast.success(`You've successfully bought: ${product.BEZEICH}`);
       console.log(hardware);
   }
 

@@ -1,12 +1,3 @@
-/*export interface HardwareInt {
-    "name":string,
-    "productNum":string,
-    "price":number,
-    "pictureLink":string,
-    "category":string
-}*/
-
-
 export interface HardwareInt
 {
     ID: number;
