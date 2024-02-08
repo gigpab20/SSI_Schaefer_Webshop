@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import "../src/stylesheets/mainPage.css"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,9 +10,11 @@ import Grid from "./elements/Grid";
 
 function App() {
 
-    const [hardware, setHardware] = React.useState<HardwareInt[]>(hardwareMock)
+    const [hardware, setHardware] = useState<HardwareInt[]>(hardwareMock)
 
-    const [sortOption, setSortOption] = React.useState("");
+    const [sortOption, setSortOption] = useState("");
+
+    const [filteredHardware, setFilteredHardware] = useState<HardwareInt[]>([])
 
     const sortItems = () => {
         switch (sortOption) {
@@ -40,6 +42,13 @@ function App() {
         sortItems();
     };
 
+    const handleFilterChange = (event:ChangeEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log(event.target);
+        //setFilteredHardware(hardware.filter())
+        console.log("sumbitted");
+    }
+
     const onBuy = (product:HardwareInt) => {
         const updatedHardware = hardware.filter(item => item !== product);
         setHardware(updatedHardware);
@@ -49,7 +58,7 @@ function App() {
 
     return (
         <div>
-            <Header headerProps={{handleSortChange}}></Header>
+            <Header headerProps={{handleSortChange, handleFilterChange}}></Header>
             <Grid gridProps={{hardware, onBuy}}></Grid>
         </div>
     );
