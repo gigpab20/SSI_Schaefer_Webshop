@@ -18,16 +18,16 @@ function App() {
     const sortItems = () => {
         switch (sortOption) {
             case "priceHighToLow":
-                setHardware([...hardware].sort((a, b) => b.price - a.price));
+                setHardware([...hardware].sort((a, b) => b.PREIS.localeCompare(a.PREIS)));
                 break;
             case "priceLowToHigh":
-                setHardware([...hardware].sort((a, b) => a.price - b.price));
+                setHardware([...hardware].sort((a, b) => a.PREIS.localeCompare(b.PREIS)));
                 break;
             case "nameAtoZ":
-                setHardware([...hardware].sort((a, b) => a.name.localeCompare(b.name)));
+                setHardware([...hardware].sort((a, b) => a.BEZEICH.localeCompare(b.BEZEICH)));
                 break;
             case "nameZtoA":
-                setHardware([...hardware].sort((a, b) => b.name.localeCompare(a.name)));
+                setHardware([...hardware].sort((a, b) => b.BEZEICH.localeCompare(a.BEZEICH)));
                 break;
             default:
                 break;
@@ -52,8 +52,6 @@ function App() {
         ProductSevice.getSong().then(
             products => {
                 setHardware(products);
-               
-
             }
         );
     }, []);

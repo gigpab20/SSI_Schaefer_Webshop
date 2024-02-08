@@ -16,6 +16,6 @@ export interface HardwareInt
     SERIENNR: string;
     ANLAGENNR: string;
     WE_DATUM: string;
-    PREIS?: string;
+    PREIS: string;
     PICTURELINK?: string;
 }
