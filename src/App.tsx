@@ -1,17 +1,16 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect , useState} from 'react';
 import "../src/stylesheets/mainPage.css"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import {HardwareInt} from "./interface/HardwareInt";
-import {hardwareMock} from "./mockdata/hardwareMock";
 import Header from "./elements/Header";
 import Grid from "./elements/Grid";
+import { ProductSevice } from './Service/ProductSevice';
 
 function App() {
-
-    const [hardware, setHardware] = useState<HardwareInt[]>(hardwareMock)
-
+    const [hardware, setHardware] = useState<HardwareInt[]>([]);
+ 
     const [sortOption, setSortOption] = useState("");
 
     const [filteredHardware, setFilteredHardware] = useState<HardwareInt[]>([])
@@ -49,19 +48,29 @@ function App() {
         console.log("sumbitted");
     }
 
-    const onBuy = (product:HardwareInt) => {
-        const updatedHardware = hardware.filter(item => item !== product);
-        setHardware(updatedHardware);
-        toast.success(`You've successfully bought: ${product.name}`);
-        console.log(hardware);
-    }
+    useEffect(() => {
+        ProductSevice.getSong().then(
+            products => {
+                setHardware(products);
+               
 
-    return (
+            }
+        );
+    }, []);
+
+  const onBuy = (product:HardwareInt) => {
+      const updatedHardware = hardware.filter(item => item !== product);
+      setHardware(updatedHardware);
+      toast.success(`You've successfully bought: ${product.BEZEICH}`);
+      console.log(hardware);
+  }
+  
+   return (
         <div>
             <Header headerProps={{handleSortChange, handleFilterChange}}></Header>
             <Grid gridProps={{hardware, onBuy}}></Grid>
         </div>
-    );
+   );
 }
 
 export default App;
