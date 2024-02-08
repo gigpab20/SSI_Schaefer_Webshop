@@ -1,0 +1,39 @@
+.hardwareCard {
+    width: 20vw;
+    margin: 10px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hardwareCard img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.hardwareCard button {
+    background-color: #ffffff;
+    border: .5px solid black;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.hardwareCard button:hover {
+    background-color: #FFED00;
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    animation-duration: 5s;
+}
