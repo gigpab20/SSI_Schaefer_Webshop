@@ -20,8 +20,7 @@ export const getAll = async () => {
    
         connection = await oracledb.getConnection();
         const result = await connection.execute(
-            'SELECT * ' +
-            'FROM mosdab20.artikeltable');
+            'SELECT ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS FROM ARTIKELTABLE');
         connection.close();
         console.log(result.rows);
 
@@ -32,10 +31,9 @@ export const getAll = async () => {
             ID: row[0],
             ARTIKEL: row[1] ,
             BEZEICH: row[2],
-            MEMO_KAUFT: row[3],
-            SERIENNR: row[4],
-            ANLAGENNR: row[5],
-            WE_DATUM: row[6]
+            SERIENNR: row[3],
+            ANLAGENNR: row[4],
+            WE_DATUM: row[5]
         };
     });
 

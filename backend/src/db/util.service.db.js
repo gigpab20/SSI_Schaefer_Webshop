@@ -28,8 +28,7 @@ exports.connectDB = connectDB;
 const getAll = () => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     connection = yield oracledb_1.default.getConnection();
-    const result = yield connection.execute('SELECT * ' +
-        'FROM mosdab20.artikeltable');
+    const result = yield connection.execute('SELECT ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS FROM MOSDAB20.ARTIKELTABLE;');
     connection.close();
     console.log(result.rows);
     const result2 = JSON.stringify(result.rows);
@@ -38,10 +37,9 @@ const getAll = () => __awaiter(void 0, void 0, void 0, function* () {
             ID: row[0],
             ARTIKEL: row[1],
             BEZEICH: row[2],
-            MEMO_KAUFT: row[3],
-            SERIENNR: row[4],
-            ANLAGENNR: row[5],
-            WE_DATUM: row[6]
+            SERIENNR: row[3],
+            ANLAGENNR: row[4],
+            WE_DATUM: row[5]
         };
     });
     return hardwareData;
