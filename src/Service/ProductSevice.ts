@@ -5,9 +5,16 @@ export class ProductSevice {
 
     private static readonly BASE_URL = 'http://localhost:3001/products';
 
-    public static async getSong(): Promise<HardwareInt[]> {
+    public static async getProducts(): Promise<HardwareInt[]> {
         const response = await axios.get<HardwareInt[]>(this.BASE_URL);
         return response.data;
+    }
+
+    public static async getProductsByPrice(price: number): Promise<HardwareInt[]> {
+        const res = await axios.get<HardwareInt[]>(this.BASE_URL + "/" + price);
+        console.log("::::::::::::::: in ProductService :::::::::::::::");
+        console.log(res.data);
+        return res.data;
     }
 
 }

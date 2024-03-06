@@ -9,10 +9,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products')
 
-
 const {connectDB} = require('./src/db/util.service.db')
 connectDB();
-
 
 var app = express();
 

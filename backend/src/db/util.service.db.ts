@@ -22,21 +22,57 @@ export const getAll = async () => {
         const result = await connection.execute(
             'SELECT ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS FROM ARTIKELTABLE');
         connection.close();
+        console.log(":::::::::::::::::: in mossb getAll ::::::::::::::::::");
         console.log(result.rows);
 
         const result2 = JSON.stringify(result.rows);
 
     const hardwareData: HardwareInt[] | undefined = result.rows?.map((row: any) => {
+        console.log(row[5]);
         return {
             ID: row[0],
-            ARTIKEL: row[1] ,
-            BEZEICH: row[2],
-            SERIENNR: row[3],
-            ANLAGENNR: row[4],
-            WE_DATUM: row[5]
+            BEZEICH: row[1],
+            SERIENNR: row[2],
+            ANLAGENNR: row[3],
+            WE_DATUM: row[4],
+            PREIS: row[5]
         };
     });
 
     return hardwareData;
     
+}
+
+export const getAllInPrice = async (price:number) => {
+    connection = await oracledb.getConnection();
+
+    const dbResponse = await connection.execute(
+        "SELECT      ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS\n" +
+            "FROM        ARTIKELTABLE\n" +
+            "WHERE       PREIS < " + price + " \n" +
+            "ORDER BY    BEZEICH ASC"
+    );
+
+    connection.close();
+
+    console.log("::::::::::::::: in util service :::::::::::::::")
+
+    //console.log(dbResponse.rows);
+
+    const editRes = JSON.stringify(dbResponse.rows);
+
+    //idk whats wrong tbh but it works and i dont have any nerves anymore to fix it
+    //TODO: fix this prob (no prio)
+    const products: HardwareInt[] | undefined = dbResponse.rows?.map((row: any) => {
+        return {
+            ID: row[0],
+            BEZEICH: row[1],
+            SERIENNR: row[2],
+            ANLAGENNR: row[3],
+            WE_DATUM: row[4],
+            PREIS: row[5]
+        }
+    })
+
+    return products;
 }

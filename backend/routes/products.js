@@ -19,4 +19,12 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield (0, util_service_db_1.getAll)();
     res.json(result);
 }));
+router.get("/:price", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const priceParam = parseInt(req.params.price);
+    console.log("::::::::::::::: in express route :::::::::::::::");
+    console.log(priceParam);
+    const dbResponse = yield (0, util_service_db_1.getAllInPrice)(priceParam);
+    console.log(dbResponse);
+    res.json(dbResponse);
+}));
 module.exports = router;
