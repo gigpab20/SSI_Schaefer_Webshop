@@ -1,4 +1,8 @@
 .hardwareCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Stellt sicher, dass der Inhalt gleichmäßig verteilt wird */
+    height: 100%; /* Oder eine feste Höhe, je nach Bedarf */
     width: 20vw;
     margin: 10px;
     text-align: center;
@@ -6,6 +10,7 @@
     border: 1px solid #ced4da;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Fügt innen etwas Platz hinzu */
 }
 
 /* Entfernt, da kein Bilderrahmen benötigt wird
@@ -38,3 +43,4 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     animation-duration: 5s;
 }
+

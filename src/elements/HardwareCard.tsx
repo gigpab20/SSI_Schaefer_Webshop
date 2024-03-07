@@ -30,7 +30,7 @@ const HardwareCard: React.FC<{hardwareItem: HardwareProps}> = ({ hardwareItem })
 
         <p>{`Preis: ${hardwareItem.item.PREIS}€`}</p>
 
-        <button onClick={() => hardwareItem.onBuy(hardwareItem.item)}>Buy</button>
+        <button onClick={() => hardwareItem.onBuy(hardwareItem.item)}>Reservieren</button>
 
     </div>
 
