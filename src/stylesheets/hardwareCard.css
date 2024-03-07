@@ -8,14 +8,15 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Entfernt, da kein Bilderrahmen benötigt wird
 .hardwareCard img {
     width: 100%;
     height: 250px;
     object-fit: cover;
 }
+*/
 
 .hardwareCard button {
-    background-color: #ffffff;
     border: .5px solid black;
     color: #333;
     text-align: center;
@@ -26,7 +27,7 @@
     margin-left: 20%;
     margin-right: 20%;
     margin-bottom: 10px;
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; /* Diese Zeile ist doppelt und könnte entfernt werden */
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
