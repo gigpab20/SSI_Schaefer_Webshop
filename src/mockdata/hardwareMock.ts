@@ -49,5 +49,5 @@ export const hardwareMock:HardwareInt[] = [
         price: 300,
         pictureLink: "https://5.imimg.com/data5/SG/QN/MY-2301562/cisco-network-switch-.jpg",
         category: "netzwerkHardware"
-    }*/
+    }*/ 
 ]
