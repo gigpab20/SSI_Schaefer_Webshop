@@ -22,10 +22,10 @@ function App() {
         console.log(hardware);
         switch (sortOption) {
             case "priceHighToLow":
-                setHardware([...hardware].sort((a, b) => b.PREIS.localeCompare(a.PREIS)));
+                setHardware([...hardware].sort((a, b) => parseFloat(b.PREIS) - parseFloat(a.PREIS)));
                 break;
             case "priceLowToHigh":
-                setHardware([...hardware].sort((a, b) => a.PREIS.localeCompare(b.PREIS)));
+                setHardware([...hardware].sort((a, b) => parseFloat(a.PREIS) - parseFloat(b.PREIS)));
                 break;
             case "nameAtoZ":
                 setHardware([...hardware].sort((a, b) => a.BEZEICH.localeCompare(b.BEZEICH)));
@@ -39,11 +39,15 @@ function App() {
     };
 
     const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        console.log(":::::::::::::::::: handleSortChange ::::::::::::::::::");
         console.log(event.target.value);
-        console.log("changing")
         setSortOption(event.target.value);
         sortItems();
     };
+
+    const handleSortButtonChange = () => {
+
+    }
 
     /*const handleFilterChange = (event:ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -53,7 +57,10 @@ function App() {
     }*/
 
     const handleRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setPriceRangeValue(parseInt(event.target.value));
+
+        if(!(parseInt(event.target.value).toString() === "NaN")) {
+            setPriceRangeValue(parseInt(event.target.value));
+        }
     }
 
     const onFilterPrice = () => {
