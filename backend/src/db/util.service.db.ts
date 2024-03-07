@@ -20,7 +20,7 @@ export const getAll = async () => {
    
         connection = await oracledb.getConnection();
         const result = await connection.execute(
-            'SELECT ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS FROM ARTIKELTABLE');
+            'SELECT ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS FROM ARTIKELTABLE ORDER BY PREIS ASC');
         connection.close();
         console.log(":::::::::::::::::: in mossb getAll ::::::::::::::::::");
         console.log(result.rows);
@@ -50,7 +50,7 @@ export const getAllInPrice = async (price:number) => {
         "SELECT      ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS\n" +
             "FROM        ARTIKELTABLE\n" +
             "WHERE       PREIS < " + price + " \n" +
-            "ORDER BY    BEZEICH ASC"
+            "ORDER BY    PREIS ASC"
     );
 
     connection.close();

@@ -13,95 +13,70 @@ import TestBackend from "./testForPandy (dont touch)/TestBackend";
 
 function App() {
     const [hardware, setHardware] = useState<HardwareInt[]>([]);
- 
     const [sortOption, setSortOption] = useState("");
-
     const [priceRangeValue, setPriceRangeValue] = useState(0);
 
-    const sortItems = () => {
-        console.log(hardware);
+    useEffect(() => {
+        ProductSevice.getProducts().then(products => {
+            setHardware(products);
+            console.log(products);
+        });
+    }, []);
+
+    useEffect(() => {
+        // Verschieben Sie die Logik von sortItems in diesen useEffect
+        console.log(sortOption);
         switch (sortOption) {
             case "priceHighToLow":
-                setHardware([...hardware].sort((a, b) => parseFloat(b.PREIS) - parseFloat(a.PREIS)));
+                setHardware(prevHardware => [...prevHardware].sort((a, b) => parseFloat(b.PREIS) - parseFloat(a.PREIS)));
                 break;
             case "priceLowToHigh":
-                setHardware([...hardware].sort((a, b) => parseFloat(a.PREIS) - parseFloat(b.PREIS)));
+                setHardware(prevHardware => [...prevHardware].sort((a, b) => parseFloat(a.PREIS) - parseFloat(b.PREIS)));
                 break;
             case "nameAtoZ":
-                setHardware([...hardware].sort((a, b) => a.BEZEICH.localeCompare(b.BEZEICH)));
+                setHardware(prevHardware => [...prevHardware].sort((a, b) => a.BEZEICH.localeCompare(b.BEZEICH)));
                 break;
             case "nameZtoA":
-                setHardware([...hardware].sort((a, b) => b.BEZEICH.localeCompare(a.BEZEICH)));
+                setHardware(prevHardware => [...prevHardware].sort((a, b) => b.BEZEICH.localeCompare(a.BEZEICH)));
                 break;
             default:
                 break;
         }
-    };
+    }, [sortOption]); // Der useEffect hängt von sortOption ab
 
     const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        console.log(":::::::::::::::::: handleSortChange ::::::::::::::::::");
-        console.log(event.target.value);
         setSortOption(event.target.value);
-        sortItems();
     };
 
-    const handleSortButtonChange = () => {
-
-    }
-
-    /*const handleFilterChange = (event:ChangeEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log(event.target);
-        //setFilteredHardware(hardware.filter())
-        console.log("sumbitted");
-    }*/
-
     const handleRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
-
         if(!(parseInt(event.target.value).toString() === "NaN")) {
             setPriceRangeValue(parseInt(event.target.value));
         }
-    }
-
-    const onFilterPrice = () => {
-
-        console.log("::::::::::::::: in App.tsx :::::::::::::::");
-        console.log(priceRangeValue);
-
-        ProductSevice.getProductsByPrice(priceRangeValue).then(p => {
-            setHardware(p);
-            console.log(p);
-        })
     };
 
-    useEffect(() => {
-        ProductSevice.getProducts().then(
-            products => {
-                setHardware(products);
-                console.log(products);
-            }
-        );
-    }, []);
+    const onFilterPrice = () => {
+        ProductSevice.getProductsByPrice(priceRangeValue).then(p => {
+            setHardware(p);
+        });
+    };
 
-  const onBuy = (product:HardwareInt) => {
-      const updatedHardware = hardware.filter(item => item !== product);
-      setHardware(updatedHardware);
-      toast.success(`You've successfully bought: ${product.BEZEICH}`);
-      console.log(hardware);
-  }
-  
-   return (
-       <div>
-           <Header headerProps={{handleSortChange, handleRangeChange, onFilterPrice}}></Header>
-           <Grid gridProps={{hardware, onBuy}}></Grid>
-           <br/><br/><br/><br/><br/><br/>
-           <BrowserRouter>
-               <Routes>
-                   <Route path={"/test"} element={<TestBackend/>}></Route>
-               </Routes>
-           </BrowserRouter>
-       </div>
-   );
+    const onBuy = (product:HardwareInt) => {
+        const updatedHardware = hardware.filter(item => item !== product);
+        setHardware(updatedHardware);
+        toast.success(`You've successfully bought: ${product.BEZEICH}`);
+    };
+
+    return (
+        <div>
+            <Header headerProps={{handleSortChange, handleRangeChange, onFilterPrice}}></Header>
+            <Grid gridProps={{hardware, onBuy}}></Grid>
+            <BrowserRouter>
+                <Routes>
+                    <Route path={"/test"} element={<TestBackend/>}></Route>
+                </Routes>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
