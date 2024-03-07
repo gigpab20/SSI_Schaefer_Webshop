@@ -3,5 +3,6 @@
   <component name="TypeScriptCompiler">
     <option name="nodeInterpreterTextField" value="node" />
     <option name="recompileOnChanges" value="true" />
+    <option name="typeScriptCompilerParams" value="--es2016" />
   </component>
 </project>

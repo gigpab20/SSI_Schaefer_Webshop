@@ -7,15 +7,19 @@ import {HardwareInt} from "./interface/HardwareInt";
 import Header from "./elements/Header";
 import Grid from "./elements/Grid";
 import { ProductSevice } from './Service/ProductSevice';
+import {Router} from "express";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import TestBackend from "./testForPandy (dont touch)/TestBackend";
 
 function App() {
     const [hardware, setHardware] = useState<HardwareInt[]>([]);
  
     const [sortOption, setSortOption] = useState("");
 
-    const [filteredHardware, setFilteredHardware] = useState<HardwareInt[]>([])
+    const [priceRangeValue, setPriceRangeValue] = useState(0);
 
     const sortItems = () => {
+        console.log(hardware);
         switch (sortOption) {
             case "priceHighToLow":
                 setHardware([...hardware].sort((a, b) => b.PREIS.localeCompare(a.PREIS)));
@@ -41,17 +45,33 @@ function App() {
         sortItems();
     };
 
-    const handleFilterChange = (event:ChangeEvent<HTMLFormElement>) => {
+    /*const handleFilterChange = (event:ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log(event.target);
         //setFilteredHardware(hardware.filter())
         console.log("sumbitted");
+    }*/
+
+    const handleRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setPriceRangeValue(parseInt(event.target.value));
     }
 
+    const onFilterPrice = () => {
+
+        console.log("::::::::::::::: in App.tsx :::::::::::::::");
+        console.log(priceRangeValue);
+
+        ProductSevice.getProductsByPrice(priceRangeValue).then(p => {
+            setHardware(p);
+            console.log(p);
+        })
+    };
+
     useEffect(() => {
-        ProductSevice.getSong().then(
+        ProductSevice.getProducts().then(
             products => {
                 setHardware(products);
+                console.log(products);
             }
         );
     }, []);
@@ -64,10 +84,16 @@ function App() {
   }
   
    return (
-        <div>
-            <Header headerProps={{handleSortChange, handleFilterChange}}></Header>
-            <Grid gridProps={{hardware, onBuy}}></Grid>
-        </div>
+       <div>
+           <Header headerProps={{handleSortChange, handleRangeChange, onFilterPrice}}></Header>
+           <Grid gridProps={{hardware, onBuy}}></Grid>
+           <br/><br/><br/><br/><br/><br/>
+           <BrowserRouter>
+               <Routes>
+                   <Route path={"/test"} element={<TestBackend/>}></Route>
+               </Routes>
+           </BrowserRouter>
+       </div>
    );
 }
 
