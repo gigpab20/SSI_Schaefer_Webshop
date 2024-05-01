@@ -1,5 +1,6 @@
 import oracledb, { Connection, Result} from "oracledb";
 import { HardwareInt } from "../model/HardwareInt";
+import {it} from "node:test";
 
 const dbConfig: oracledb.ConnectionAttributes = {
     user: 'mosdab20',
@@ -75,4 +76,23 @@ export const getAllInPrice = async (price:number) => {
     })
 
     return products;
+}
+
+export async function updateProduct(item: HardwareInt) {
+    connection = await oracledb.getConnection();
+
+    const res = await connection.execute(
+        "UPDATE ARTIKELTABLE " +
+        "SET BEZEICH = '" + item.BEZEICH + "'," +
+        "BESCHREIBUNG = '" + item.BEZEICH + "'," +
+        "SERIENNR = '" + item.SERIENNR + "'," +
+        "WE_DATUM = TO_DATE('" + item.WE_DATUM + "', 'dd.MM.yyyy')," +
+        "KOMMENTAR = '" + item.BEZEICH + "'," +
+        "RESERVIERT = 1 " +
+        "WHERE ARTIKELNR = '" + item.ID + "';"
+    )
+
+    console.log("::::::::::::::: in util service (updateProduct) :::::::::::::::")
+
+    connection.close()
 }

@@ -66,9 +66,8 @@ const Mainpage = () => {
 
     return (
         <div>
-
-                <Header headerProps={{handleSortChange, handleRangeChange, onFilterPrice}}></Header>
-                <Grid gridProps={{hardware, onBuy}}></Grid>
+            <Header headerProps={{handleSortChange, handleRangeChange, onFilterPrice}}></Header>
+            <Grid gridProps={{hardware, onBuy}}></Grid>
         </div>
     );
 };

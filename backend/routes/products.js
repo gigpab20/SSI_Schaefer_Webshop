@@ -27,4 +27,9 @@ router.get("/:price", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     console.log(dbResponse);
     res.json(dbResponse);
 }));
+router.post("/:item", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const item = req.params.item;
+    console.log(item);
+    //TODO: make the post and verify that the item is the actual param
+}));
 module.exports = router;

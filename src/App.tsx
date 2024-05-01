@@ -11,6 +11,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import TestBackend from "./testForPandy (dont touch)/TestBackend";
 import Login from './elements/Login';
 import Mainpage from './elements/Mainpage';
+import TestAdminPanel from "./testForPandy (dont touch)/TestAdminPanel";
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
                 <Routes>
                     <Route path={"/mainpage"} element={<Mainpage/>}></Route>
                     <Route path="/" element={<Login/>}></Route>
-                    <Route path={"/test"} element={<TestBackend/>}></Route>
+                    <Route path={"/test"} element={<TestAdminPanel/>}></Route>
                 </Routes>
             </BrowserRouter>
         </div>

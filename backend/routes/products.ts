@@ -22,5 +22,12 @@ router.get("/:price", async (req: Request, res: Response) => {
   res.json(dbResponse);
 })
 
+router.post("/:item", async (req: Request, res: Response) => {
+  const item = req.params.item;
+  console.log(item);
+
+  //TODO: make the post and verify that the item is the actual param
+})
+
 module.exports = router;
 

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllInPrice = exports.getAll = exports.connectDB = void 0;
+exports.updateProduct = exports.getAllInPrice = exports.getAll = exports.connectDB = void 0;
 const oracledb_1 = __importDefault(require("oracledb"));
 const dbConfig = {
     user: 'mosdab20',
@@ -28,7 +28,7 @@ exports.connectDB = connectDB;
 const getAll = () => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     connection = yield oracledb_1.default.getConnection();
-    const result = yield connection.execute('SELECT ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS FROM ARTIKELTABLE');
+    const result = yield connection.execute('SELECT ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS FROM ARTIKELTABLE ORDER BY PREIS ASC');
     connection.close();
     console.log(":::::::::::::::::: in mossb getAll ::::::::::::::::::");
     console.log(result.rows);
@@ -53,7 +53,7 @@ const getAllInPrice = (price) => __awaiter(void 0, void 0, void 0, function* () 
     const dbResponse = yield connection.execute("SELECT      ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS\n" +
         "FROM        ARTIKELTABLE\n" +
         "WHERE       PREIS < " + price + " \n" +
-        "ORDER BY    BEZEICH ASC");
+        "ORDER BY    PREIS ASC");
     connection.close();
     console.log("::::::::::::::: in util service :::::::::::::::");
     //console.log(dbResponse.rows);
@@ -73,3 +73,19 @@ const getAllInPrice = (price) => __awaiter(void 0, void 0, void 0, function* () 
     return products;
 });
 exports.getAllInPrice = getAllInPrice;
+function updateProduct(item) {
+    return __awaiter(this, void 0, void 0, function* () {
+        connection = yield oracledb_1.default.getConnection();
+        const res = yield connection.execute("UPDATE ARTIKELTABLE " +
+            "SET BEZEICH = '" + item.BEZEICH + "'," +
+            "BESCHREIBUNG = '" + item.BEZEICH + "'," +
+            "SERIENNR = '" + item.SERIENNR + "'," +
+            "WE_DATUM = TO_DATE('" + item.WE_DATUM + "', 'dd.MM.yyyy')," +
+            "KOMMENTAR = '" + item.BEZEICH + "'," +
+            "RESERVIERT = 1 " +
+            "WHERE ARTIKELNR = '" + item.ID + "';");
+        console.log("::::::::::::::: in util service (updateProduct) :::::::::::::::");
+        connection.close();
+    });
+}
+exports.updateProduct = updateProduct;
