@@ -15,10 +15,7 @@ const Mainpage = () => {
     const [priceRangeValue, setPriceRangeValue] = useState(0);
 
     useEffect(() => {
-        ProductSevice.getProducts().then(products => {
-            setHardware(products);
-            console.log(products);
-        });
+        ProductSevice.getProducts().then(setHardware);
     }, []);
 
     useEffect(() => {
@@ -58,17 +55,20 @@ const Mainpage = () => {
         });
     };
 
-    const onBuy = (product:HardwareInt) => {
-        const updatedHardware = hardware.filter(item => item !== product);
+    const handleBuy = (product: HardwareInt) => {
+        const updatedHardware = hardware.filter(item => item.ANLAGENNR !== product.ANLAGENNR);
         setHardware(updatedHardware);
-        toast.success(`You've successfully bought: ${product.BEZEICH}`);
+        toast.success(`Produkt ${product.BEZEICH} reserviert.`);
     };
 
     return (
         <div>
-
-                <Header headerProps={{handleSortChange, handleRangeChange, onFilterPrice}}></Header>
-                <Grid gridProps={{hardware, onBuy}}></Grid>
+            <Header headerProps={{
+                handleSortChange: (e) => setSortOption(e.target.value),
+                handleRangeChange: (e) => setPriceRangeValue(parseInt(e.target.value)),
+                onFilterPrice: () => ProductSevice.getProductsByPrice(priceRangeValue).then(setHardware)
+            }} />
+            <Grid gridProps={{ hardware, onBuy: handleBuy }} />
         </div>
     );
 };
