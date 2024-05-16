@@ -21,9 +21,9 @@ export const getAll = async () => {
     const result = await connection.execute(
         'SELECT * FROM ARTIKELTABLE ORDER BY PREIS ASC');
     connection.close();
-    console.log(":::::::::::::::::: in mossb getAll !!::::::::::::::::::");
+    //console.log(":::::::::::::::::: in mossb getAll !!::::::::::::::::::");
 
-    console.log(result.rows);
+    //console.log(result.rows);
 
 
         const result2 = JSON.stringify(result.rows);
@@ -60,7 +60,7 @@ export const getAllInPrice = async (price:number) => {
 
     connection.close();
 
-    console.log("::::::::::::::: in util service :::::::::::::::")
+    //console.log("::::::::::::::: in util service :::::::::::::::")
 
     //console.log(dbResponse.rows);
 
@@ -94,6 +94,9 @@ export const getAllInPrice = async (price:number) => {
 
 export async function updateProduct(item: HardwareInt) {
     connection = await oracledb.getConnection();
+
+    console.log(item);
+    console.log(item.BEZEICH);
 
     const res = await connection.execute(
         "UPDATE ARTIKELTABLE " +

@@ -30,8 +30,8 @@ const getAll = () => __awaiter(void 0, void 0, void 0, function* () {
     connection = yield oracledb_1.default.getConnection();
     const result = yield connection.execute('SELECT * FROM ARTIKELTABLE ORDER BY PREIS ASC');
     connection.close();
-    console.log(":::::::::::::::::: in mossb getAll !!::::::::::::::::::");
-    console.log(result.rows);
+    //console.log(":::::::::::::::::: in mossb getAll !!::::::::::::::::::");
+    //console.log(result.rows);
     const result2 = JSON.stringify(result.rows);
     const hardwareData = (_a = result.rows) === null || _a === void 0 ? void 0 : _a.map((row) => {
         //console.log(row[5]);
@@ -60,7 +60,7 @@ const getAllInPrice = (price) => __awaiter(void 0, void 0, void 0, function* () 
         "ORDER BY    PREIS ASC"*/
     );
     connection.close();
-    console.log("::::::::::::::: in util service :::::::::::::::");
+    //console.log("::::::::::::::: in util service :::::::::::::::")
     //console.log(dbResponse.rows);
     const editRes = JSON.stringify(dbResponse.rows);
     //idk whats wrong tbh but it works and i dont have any nerves anymore to fix it
@@ -90,6 +90,8 @@ exports.getAllInPrice = getAllInPrice;
 function updateProduct(item) {
     return __awaiter(this, void 0, void 0, function* () {
         connection = yield oracledb_1.default.getConnection();
+        console.log(item);
+        console.log(item.BEZEICH);
         const res = yield connection.execute("UPDATE ARTIKELTABLE " +
             "SET BEZEICH = '" + item.BEZEICH + "'," +
             "BESCHREIBUNG = '" + item.BESCHREIBUNG + "'," +

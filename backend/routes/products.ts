@@ -22,8 +22,9 @@ router.get("/:price", async (req: Request, res: Response) => {
   res.json(dbResponse);
 })
 
-router.patch("/data", async (req: Request, res: Response) => {
-  const item = req.body.data
+router.patch("/", async (req: Request, res: Response) => {
+  const item = req.body.item;
+  console.log("::::::::::::::::in Patch in products.ts::::::::::::::::");
   console.log(item);
 
   await updateProduct(item)
