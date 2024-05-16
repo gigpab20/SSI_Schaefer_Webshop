@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllInPrice = exports.getAll = exports.connectDB = void 0;
+exports.updateProduct = exports.getAllInPrice = exports.getAll = exports.connectDB = void 0;
 const oracledb_1 = __importDefault(require("oracledb"));
 const dbConfig = {
     user: 'mosdab20',
@@ -28,20 +28,25 @@ exports.connectDB = connectDB;
 const getAll = () => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     connection = yield oracledb_1.default.getConnection();
-    const result = yield connection.execute('SELECT ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS FROM ARTIKELTABLE ORDER BY PREIS ASC');
+
+    const result = yield connection.execute('SELECT * FROM ARTIKELTABLE ORDER BY PREIS ASC');
+
     connection.close();
-    console.log(":::::::::::::::::: in mossb getAll ::::::::::::::::::");
-    console.log(result.rows);
+    //console.log(":::::::::::::::::: in mossb getAll !!::::::::::::::::::");
+    //console.log(result.rows);
     const result2 = JSON.stringify(result.rows);
     const hardwareData = (_a = result.rows) === null || _a === void 0 ? void 0 : _a.map((row) => {
-        console.log(row[5]);
+        //console.log(row[5]);
         return {
-            ID: row[0],
+            ARTIKELNR: row[0],
             BEZEICH: row[1],
-            SERIENNR: row[2],
-            ANLAGENNR: row[3],
-            WE_DATUM: row[4],
-            PREIS: row[5]
+            BESCHREIBUNG: row[2],
+            SERIENNR: row[3],
+            ANLAGENNR: row[4],
+            WE_DATUM: row[5],
+            PREIS: row[6],
+            KOMMENTAR: row[7],
+            RESERVIERT: row[8]
         };
     });
     return hardwareData;
@@ -50,26 +55,57 @@ exports.getAll = getAll;
 const getAllInPrice = (price) => __awaiter(void 0, void 0, void 0, function* () {
     var _b;
     connection = yield oracledb_1.default.getConnection();
-    const dbResponse = yield connection.execute("SELECT      ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS\n" +
+    const dbResponse = yield connection.execute("SELECT * FROM ARTIKELTABLE WHERE PREIS < " + price + " ORDER BY PREIS ASC"
+    /*"SELECT      ARTIKELNR, BEZEICH, SERIENNR, ANLAGENNR, WE_DATUM, PREIS\n" +
         "FROM        ARTIKELTABLE\n" +
         "WHERE       PREIS < " + price + " \n" +
-        "ORDER BY    PREIS ASC");
+        "ORDER BY    PREIS ASC"*/
+    );
+
     connection.close();
-    console.log("::::::::::::::: in util service :::::::::::::::");
+    //console.log("::::::::::::::: in util service :::::::::::::::")
     //console.log(dbResponse.rows);
     const editRes = JSON.stringify(dbResponse.rows);
     //idk whats wrong tbh but it works and i dont have any nerves anymore to fix it
     //TODO: fix this prob (no prio)
     const products = (_b = dbResponse.rows) === null || _b === void 0 ? void 0 : _b.map((row) => {
         return {
-            ID: row[0],
+            ARTIKELNR: row[0],
+            BEZEICH: row[1],
+            BESCHREIBUNG: row[2],
+            SERIENNR: row[3],
+            ANLAGENNR: row[4],
+            WE_DATUM: row[5],
+            PREIS: row[6],
+            KOMMENTAR: row[7],
+            RESERVIERT: row[8]
+            /*ID: row[0],
             BEZEICH: row[1],
             SERIENNR: row[2],
             ANLAGENNR: row[3],
             WE_DATUM: row[4],
-            PREIS: row[5]
+            PREIS: row[5]*/
         };
     });
     return products;
 });
 exports.getAllInPrice = getAllInPrice;
+function updateProduct(item) {
+    return __awaiter(this, void 0, void 0, function* () {
+        connection = yield oracledb_1.default.getConnection();
+        console.log(item);
+        console.log(item.BEZEICH);
+        const res = yield connection.execute("UPDATE ARTIKELTABLE " +
+            "SET BEZEICH = '" + item.BEZEICH + "'," +
+            "BESCHREIBUNG = '" + item.BESCHREIBUNG + "'," +
+            "SERIENNR = '" + item.SERIENNR + "'," +
+            "WE_DATUM = TO_DATE('" + item.WE_DATUM + "', 'dd.MM.yyyy')," +
+            "KOMMENTAR = '" + item.KOMMENTAR + "'," +
+            "RESERVIERT = 1 " +
+            "WHERE ARTIKELNR = '" + item.ARTIKELNR + "'");
+        yield connection.execute(("COMMIT"));
+        console.log("::::::::::::::: in util service (updateProduct) :::::::::::::::");
+        connection.close();
+    });
+}
+exports.updateProduct = updateProduct;
