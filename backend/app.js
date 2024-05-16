@@ -6,7 +6,7 @@ const cors = require('cors');
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/user');
 var productsRouter = require('./routes/products')
 
 const {connectDB} = require('./src/db/util.service.db')
@@ -22,7 +22,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 app.use('/products', productsRouter);
 
 module.exports = app;

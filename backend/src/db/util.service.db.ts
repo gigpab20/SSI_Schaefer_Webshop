@@ -41,7 +41,7 @@ export const getAll = async () => {
             KOMMENTAR: row[7],
             RESERVIERT: row[8]
         };
-    });
+    }) as HardwareInt[];
 
     return hardwareData;
     
@@ -87,7 +87,7 @@ export const getAllInPrice = async (price:number) => {
             WE_DATUM: row[4],
             PREIS: row[5]*/
         }
-    })
+    }) as HardwareInt[];
 
     return products;
 }

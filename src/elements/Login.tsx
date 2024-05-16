@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import '../stylesheets/Login.css'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 const Login = () => {
 
     const navigate = useNavigate();
@@ -8,11 +9,22 @@ const Login = () => {
     const [password, setPassword] = useState<string>('');
 
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>)=> {
         event.preventDefault();
 
-        if (username === 'admin' && password === '1234') {
-            navigate("/mainpage");
+        try {
+            // Senden Sie eine POST-Anfrage an den Backend-Login-Endpunkt
+           axios.post('http://localhost:3001/user/login', {
+                username: username,
+                password: password
+            });
+
+            // Wenn die Anmeldung erfolgreich ist, navigieren Sie zur Hauptseite
+            navigate('/mainpage');
+        } catch (error) {
+            // Behandeln Sie Fehler, z.B. ungültige Anmeldeinformationen
+           console.log("Fehler bei dem Anmelden!")
         }
     };
 

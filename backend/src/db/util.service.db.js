@@ -28,7 +28,9 @@ exports.connectDB = connectDB;
 const getAll = () => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     connection = yield oracledb_1.default.getConnection();
+
     const result = yield connection.execute('SELECT * FROM ARTIKELTABLE ORDER BY PREIS ASC');
+
     connection.close();
     //console.log(":::::::::::::::::: in mossb getAll !!::::::::::::::::::");
     //console.log(result.rows);
@@ -59,6 +61,7 @@ const getAllInPrice = (price) => __awaiter(void 0, void 0, void 0, function* () 
         "WHERE       PREIS < " + price + " \n" +
         "ORDER BY    PREIS ASC"*/
     );
+
     connection.close();
     //console.log("::::::::::::::: in util service :::::::::::::::")
     //console.log(dbResponse.rows);
