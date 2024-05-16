@@ -34,6 +34,7 @@ function TestAdminPanel() {
         setSelectedItem(item);
     }
     function onSaveChanges (item:HardwareInt){
+        console.log(":::::::::::::::::::::::::::::hier im onSave:::::::::::::::::::::::::::::");
         ProductSevice.updateProduct(item)
     }
 

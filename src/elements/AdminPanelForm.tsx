@@ -14,18 +14,18 @@ function AdminPanelForm({item, onSave}:AdminPanelProps) {
         const articleNumber = document.getElementById("articleNumber") as HTMLInputElement;
         const seriesNumber = document.getElementById("seriesNumber") as HTMLInputElement;
         const bezeichnung = document.getElementById("bezeichnung") as HTMLInputElement;
-        const anlagenNummer = document.getElementById("bezeichnung") as HTMLInputElement;
-        const price = document.getElementById("bezeichnung") as HTMLInputElement;
-        const description = document.getElementById("bezeichnung") as HTMLInputElement;
-        const comment = document.getElementById("bezeichnung") as HTMLInputElement;
-        const buyDate = document.getElementById("bezeichnung") as HTMLInputElement;
+        const anlagenNummer = document.getElementById("anlagenNummer") as HTMLInputElement;
+        const price = document.getElementById("price") as HTMLInputElement;
+        const description = document.getElementById("description") as HTMLInputElement;
+        const comment = document.getElementById("comment") as HTMLInputElement;
+        const buyDate = document.getElementById("buyDate") as HTMLInputElement;
 
 
         const newItem:HardwareInt = {
             ARTIKELNR: articleNumber.value,
             SERIENNR: seriesNumber.value,
             BEZEICH: bezeichnung.value,
-            ANLAGENNR: parseInt(anlagenNummer.value),
+            ANLAGENNR: Number(anlagenNummer.value),
             PREIS: price.value,
             BESCHREIBUNG: description.value,
             KOMMENTAR: comment.value,
@@ -33,16 +33,23 @@ function AdminPanelForm({item, onSave}:AdminPanelProps) {
             RESERVIERT: item.RESERVIERT
         }
 
+            console.log("::::::::::::::::::::::::::::::::::");
             console.log(newItem);
             console.log("::::::::::::::::::::::::::::::::::");
+        /*console.log(typeof anlagenNummer.value);
+        console.log(anlagenNummer.value);
+        console.log("::::::::::::::::::::::::::::::::::");
+        console.log(typeof Number(anlagenNummer.value));
+        console.log(Number(anlagenNummer.value));*/
 
+            onSave(newItem);
 
     };
 
     return (
         <div className={"flex-grow bg-white p-4"}>
             <h2 className={"text-xl font-bold mb-4"}>Artikel bearbeiten</h2>
-            <form className={"flex flex-grow"}>
+            <div className={"flex flex-grow"}>
                 <div className={"flex-none w-1/2 bg-gray-300 p-4"}>
                     <div className={"mb-4"}>
                         <label
@@ -167,7 +174,7 @@ function AdminPanelForm({item, onSave}:AdminPanelProps) {
                         </button>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     );
 }
