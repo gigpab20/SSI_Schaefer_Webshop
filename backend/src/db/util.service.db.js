@@ -99,7 +99,8 @@ function updateProduct(item) {
             "WE_DATUM = TO_DATE('" + item.WE_DATUM + "', 'dd.MM.yyyy')," +
             "KOMMENTAR = '" + item.KOMMENTAR + "'," +
             "RESERVIERT = 1 " +
-            "WHERE ARTIKELNR = '" + item.ARTIKELNR + "';");
+            "WHERE ARTIKELNR = '" + item.ARTIKELNR + "'");
+        yield connection.execute(("COMMIT"));
         console.log("::::::::::::::: in util service (updateProduct) :::::::::::::::");
         connection.close();
     });

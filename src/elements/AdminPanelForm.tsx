@@ -8,7 +8,6 @@ interface AdminPanelProps {
 
 function AdminPanelForm({item, onSave}:AdminPanelProps) {
 
-
     const handleSubmit = () => {
 
         const articleNumber = document.getElementById("articleNumber") as HTMLInputElement;
@@ -61,7 +60,7 @@ function AdminPanelForm({item, onSave}:AdminPanelProps) {
                             type="text"
                             id="articleNumber"
                             name="articleNumber"
-                            value={item.ARTIKELNR}
+                            defaultValue={item.ARTIKELNR}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
                     </div>
@@ -76,7 +75,7 @@ function AdminPanelForm({item, onSave}:AdminPanelProps) {
                             type="text"
                             id="seriesNumber"
                             name="seriesNumber"
-                            value={item.SERIENNR}
+                            defaultValue={item.SERIENNR}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
                     </div>
@@ -91,7 +90,7 @@ function AdminPanelForm({item, onSave}:AdminPanelProps) {
                             type="text"
                             id="bezeichnung"
                             name="bezeichnung"
-                            value={item.BEZEICH}
+                            defaultValue={item.BEZEICH}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
                     </div>
@@ -106,7 +105,7 @@ function AdminPanelForm({item, onSave}:AdminPanelProps) {
                             type="text"
                             id="anlagenNummer"
                             name="anlagenNummer"
-                            value={item.ANLAGENNR}
+                            defaultValue={item.ANLAGENNR}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
                     </div>
@@ -121,7 +120,7 @@ function AdminPanelForm({item, onSave}:AdminPanelProps) {
                             type="text"
                             id="price"
                             name="price"
-                            value={item.PREIS}
+                            defaultValue={item.PREIS}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
                     </div>
@@ -137,7 +136,7 @@ function AdminPanelForm({item, onSave}:AdminPanelProps) {
                             <textarea
                                 id="description"
                                 name="description"
-                                value={item.BESCHREIBUNG}
+                                defaultValue={item.BESCHREIBUNG}
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     </textarea>
                         </div>
@@ -151,7 +150,7 @@ function AdminPanelForm({item, onSave}:AdminPanelProps) {
                             <textarea
                                 id="comment"
                                 name="comment"
-                                value={item.KOMMENTAR}
+                                defaultValue={item.KOMMENTAR}
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     </textarea>
                         </div>
@@ -166,7 +165,8 @@ function AdminPanelForm({item, onSave}:AdminPanelProps) {
                                 type="text"
                                 id="buyDate"
                                 name="buyDate"
-                                value={item.WE_DATUM}
+                                defaultValue={item.WE_DATUM}
+
                                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
                         </div>
                         <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" onClick={() => {handleSubmit()}}>
