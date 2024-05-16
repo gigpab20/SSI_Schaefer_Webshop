@@ -22,7 +22,7 @@ const HardwareCard: React.FC<{hardwareItem: HardwareProps}> = ({ hardwareItem })
 
         <button onClick={() => hardwareItem.onBuy(hardwareItem.item)}>Buy</button>*/}
 
-        <img src={hardwareItem.item.PICTURELINK} alt={hardwareItem.item.ARTIKEL} />
+        <h1>{hardwareItem.item.ARTIKELNR}</h1>
 
         <p>{`Name: ${hardwareItem.item.BEZEICH}`}</p>
 

@@ -1,11 +1,12 @@
 export interface HardwareInt
 {
-    ID: number;
-    ARTIKEL: string;
+    ARTIKELNR: string;
     BEZEICH: string;
+    BESCHREIBUNG: string;
     SERIENNR: string;
-    ANLAGENNR: string;
+    ANLAGENNR: number;
     WE_DATUM: string;
     PREIS?: string;
-    PICTURELINK?: string;
+    KOMMENTAR: string;
+    RESERVIERT: number;
 }

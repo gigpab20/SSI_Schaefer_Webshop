@@ -21,7 +21,7 @@ const Mainpage = () => {
         });
     }, []);
 
-    useEffect(() => {
+    /*useEffect(() => {
         // Verschieben Sie die Logik von sortItems in diesen useEffect
         console.log(sortOption);
         switch (sortOption) {
@@ -40,7 +40,7 @@ const Mainpage = () => {
             default:
                 break;
         }
-    }, [sortOption]); // Der useEffect hängt von sortOption ab
+    }, [sortOption]);*/ // Der useEffect hängt von sortOption ab
 
     const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSortOption(event.target.value);

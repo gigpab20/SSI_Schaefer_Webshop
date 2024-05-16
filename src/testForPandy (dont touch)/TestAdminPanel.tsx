@@ -10,6 +10,18 @@ function TestAdminPanel() {
 
     const [hardware, setHardware] = useState<HardwareInt[]>([]);
 
+    const [selectedItem, setSelectedItem] = useState<HardwareInt>({
+        ARTIKELNR: "",
+        BEZEICH: "",
+        BESCHREIBUNG: "",
+        SERIENNR: "",
+        ANLAGENNR: 0,
+        WE_DATUM: "",
+        PREIS: "",
+        KOMMENTAR: "",
+        RESERVIERT: 0
+    });
+
     useEffect(() => {
         ProductSevice.getProducts().then(products => {
             setHardware(products);
@@ -19,7 +31,10 @@ function TestAdminPanel() {
 
     function onChooseProduct (item: HardwareInt) {
         //window.location.assign("https://http.cat/status/102");
-
+        setSelectedItem(item);
+    }
+    function onSaveChanges (item:HardwareInt){
+        ProductSevice.updateProduct(item)
     }
 
     return (
@@ -39,7 +54,7 @@ function TestAdminPanel() {
                     ))}
 
                 </div>
-                <AdminPanelForm></AdminPanelForm>
+                <AdminPanelForm item={selectedItem} onSave={onSaveChanges}></AdminPanelForm>
             </div>
         </div>
     );

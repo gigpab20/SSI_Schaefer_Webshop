@@ -17,4 +17,10 @@ export class ProductSevice {
         return res.data;
     }
 
+    public static async updateProduct(item:HardwareInt) {
+        const response = await axios.patch(this.BASE_URL, {item}).then(response => {
+        console.log('Patch erfolgreich:', response);
+      })
+    }
+
 }

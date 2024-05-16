@@ -27,9 +27,10 @@ router.get("/:price", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     console.log(dbResponse);
     res.json(dbResponse);
 }));
-router.post("/:item", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const item = req.params.item;
+router.patch("/data", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const item = req.body.data;
     console.log(item);
+    yield (0, util_service_db_1.updateProduct)(item);
     //TODO: make the post and verify that the item is the actual param
 }));
 module.exports = router;

@@ -22,7 +22,7 @@ function App() {
                 <Routes>
                     <Route path={"/mainpage"} element={<Mainpage/>}></Route>
                     <Route path="/" element={<Login/>}></Route>
-                    <Route path={"/test"} element={<TestAdminPanel/>}></Route>
+                    <Route path={"/adminPanel"} element={<TestAdminPanel/>}></Route>
                 </Routes>
             </BrowserRouter>
         </div>

@@ -1,5 +1,5 @@
 import express, {Router, Request, Response} from "express";
-import {getAll, getAllInPrice} from "../src/db/util.service.db";
+import {getAll, getAllInPrice, updateProduct} from "../src/db/util.service.db";
 import {HardwareInt} from "../src/model/HardwareInt"
 
 let router = express.Router();
@@ -22,10 +22,11 @@ router.get("/:price", async (req: Request, res: Response) => {
   res.json(dbResponse);
 })
 
-router.post("/:item", async (req: Request, res: Response) => {
-  const item = req.params.item;
+router.patch("/data", async (req: Request, res: Response) => {
+  const item = req.body.data
   console.log(item);
 
+  await updateProduct(item)
   //TODO: make the post and verify that the item is the actual param
 })
 

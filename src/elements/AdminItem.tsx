@@ -21,7 +21,7 @@ function AdminItem({onChooseProduct, item}: AdminItemProps) {
                             </div>
                         </div>
 
-                        <button className="flex justify-end w-24 text-right" onClick={onChooseProduct}>
+                        <button className="flex justify-end w-24 text-right" onClick={() => {onChooseProduct(item)}}>
                             <svg
                                 width="20"
                                 fill="currentColor"
