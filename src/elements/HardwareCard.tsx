@@ -16,6 +16,7 @@ const HardwareCard: React.FC<{ hardwareItem: HardwareProps }> = ({ hardwareItem 
     return (
         <div className="hardwareCard">
             <h1>{hardwareItem.item.ARTIKELNR}</h1>
+
             <p>{`Name: ${hardwareItem.item.BEZEICH}`}</p>
             <p>{`ID: ${hardwareItem.item.ANLAGENNR}`}</p>
             <p>{`Preis: ${hardwareItem.item.PREIS}€`}</p>
