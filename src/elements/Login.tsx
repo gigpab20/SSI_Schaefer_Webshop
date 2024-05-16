@@ -7,7 +7,7 @@ const Login = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [error, setError] = useState('');
+
 
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>)=> {
@@ -15,7 +15,7 @@ const Login = () => {
 
         try {
             // Senden Sie eine POST-Anfrage an den Backend-Login-Endpunkt
-            const response = await axios.post('http://localhost:3001/user/login', {
+           axios.post('http://localhost:3001/user/login', {
                 username: username,
                 password: password
             });
@@ -24,7 +24,7 @@ const Login = () => {
             navigate('/mainpage');
         } catch (error) {
             // Behandeln Sie Fehler, z.B. ungültige Anmeldeinformationen
-            setError('Invalid username or password');
+           console.log("Fehler bei dem Anmelden!")
         }
     };
 
