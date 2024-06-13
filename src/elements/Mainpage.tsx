@@ -58,7 +58,7 @@ const Mainpage = () => {
     const handleBuy = (product: HardwareInt) => {
         const updatedHardware = hardware.filter(item => item.ANLAGENNR !== product.ANLAGENNR);
         setHardware(updatedHardware);
-        toast.success(`Produkt ${product.BEZEICH} reserviert.`);
+        toast.success(`Produkt ${product.ANLAGENNR} reserviert.`);
     };
 
     return (

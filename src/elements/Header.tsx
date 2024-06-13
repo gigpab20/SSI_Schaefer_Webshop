@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import "../stylesheets/header.css"
 
 interface HeaderProps {
@@ -8,7 +8,6 @@ interface HeaderProps {
 }
 
 const Header: React.FC<{headerProps: HeaderProps}> = ({headerProps}) => {
-
     return (
         <div>
             <header className="flex justify-between items-center custom-header-bg p-4">
