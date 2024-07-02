@@ -1,0 +1,87 @@
+.btn {
+    display: block;
+    padding: 0.15em 0.25em; /* Leicht vergrößert */
+    background: transparent;
+    outline: none;
+    border: 0;
+    color: #d4af37;
+    letter-spacing: 0.1em;
+    font-family: monospace;
+    font-size: 5px; /* Leicht vergrößert */
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.cube {
+    position: relative;
+    transition: all 0.5s;
+    transform: scale(0.75); /* Skalierungsfaktor angepasst */
+}
+
+.cube .bg-top {
+    position: absolute;
+    height: 10px; /* Unverändert */
+    background: #d4af37;
+    bottom: 100%;
+    left: 5px;
+    right: -5px;
+    transform: skew(-45deg, 0);
+    margin: 0;
+    transition: all 0.4s;
+}
+
+.cube .bg-top .bg-inner {
+    bottom: 0;
+}
+
+.cube .bg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    background: #d4af37;
+    transition: all 0.4s;
+}
+
+.cube .bg-right {
+    position: absolute;
+    background: #d4af37;
+    top: -5px; /* Unverändert */
+    z-index: 0;
+    bottom: 5px; /* Unverändert */
+    width: 10px; /* Unverändert */
+    left: 100%;
+    transform: skew(0, -45deg);
+    transition: all 0.4s;
+}
+
+.cube .bg-right .bg-inner {
+    left: 0;
+}
+
+.cube .bg-inner {
+    background: #28282d;
+    position: absolute;
+    left: 2px; /* Verkleinert */
+    right: 2px; /* Verkleinert */
+    top: 2px; /* Verkleinert */
+    bottom: 2px; /* Verkleinert */
+}
+
+.cube .text {
+    position: relative;
+    transition: all 0.4s;
+}
+
+.cube:active {
+    z-index: 9999;
+    animation: bounce 0.1s linear;
+}
+
+@keyframes bounce {
+    50% {
+        transform: scale(0.9);
+    }
+}
