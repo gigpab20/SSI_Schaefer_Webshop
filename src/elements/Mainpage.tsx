@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { HardwareInt } from '../interface/HardwareInt';
 import Header from './Header';
 import Grid from './Grid';
-import { MockData } from '../mockdata/MockData'; // Stellen Sie sicher, dass dieser Import korrekt ist
+import { MockData } from '../mockdata/MockData';
 
 const Mainpage = () => {
     const [hardware, setHardware] = useState<HardwareInt[]>([]);
@@ -72,3 +72,4 @@ const Mainpage = () => {
 };
 
 export default Mainpage;
+

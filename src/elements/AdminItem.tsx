@@ -1,12 +1,12 @@
 import React from 'react';
-import {HardwareInt} from "../interface/HardwareInt";
+import { HardwareInt } from "../interface/HardwareInt";
 
 interface AdminItemProps {
     onChooseProduct: (item: HardwareInt) => void
     item: HardwareInt
 }
 
-function AdminItem({onChooseProduct, item}: AdminItemProps) {
+function AdminItem({ onChooseProduct, item }: AdminItemProps) {
     return (
         <div>
             <ul className="flex flex-col divide-y divide">
@@ -20,7 +20,7 @@ function AdminItem({onChooseProduct, item}: AdminItemProps) {
                                 {item.BEZEICH}
                             </div>
                         </div>
-                        <button className="flex justify-end w-24 text-right" onClick={() => {onChooseProduct(item)}}>
+                        <button className="flex justify-end w-24 text-right" onClick={() => { onChooseProduct(item) }}>
                             <svg
                                 width="20"
                                 fill="currentColor"

@@ -1,28 +1,30 @@
+import axios from "axios";
 import { HardwareInt } from "../interface/HardwareInt";
-import { MockData } from "../mockdata/MockData"; // Importieren Sie die Mock-Daten
 
 export class ProductService {
+    private static readonly BASE_URL = 'http://localhost:3001/products';
+
     public static async getProducts(): Promise<HardwareInt[]> {
-        // Hier werden die Mock-Daten zurückgegeben
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve(MockData.getMockHardwareData());
-            }, 1000); // Simuliert eine Netzwerkverzögerung
-        });
+        try {
+            const response = await axios.get<HardwareInt[]>(this.BASE_URL);
+            console.log("API response:", response.data); // Protokollierung der API-Antwort
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching products:", error);
+            throw error;
+        }
     }
 
     public static async getProductsByPrice(price: number): Promise<HardwareInt[]> {
-        // Filtern der Mock-Daten nach Preis
-        return new Promise(resolve => {
-            setTimeout(() => {
-                const filteredProducts = MockData.getMockHardwareData().filter(item => parseFloat(item.PREIS || '0') <= price);
-                resolve(filteredProducts);
-            }, 1000); // Simuliert eine Netzwerkverzögerung
-        });
+        const res = await axios.get<HardwareInt[]>(this.BASE_URL + "/" + price);
+        console.log("::::::::::::::: in ProductService :::::::::::::::");
+        console.log(res.data);
+        return res.data;
     }
 
-    public static async updateProduct(item: HardwareInt) {
-        // Diese Methode kann leer bleiben, da wir keine echte API haben
-        console.log("Produkt aktualisiert: ", item);
+    public static async updateProduct(item: HardwareInt): Promise<HardwareInt> {
+        const response = await axios.patch<HardwareInt>(`${this.BASE_URL}/${item.ANLAGENNR}`, item);
+        console.log('Patch erfolgreich:', response.data);
+        return response.data;
     }
 }
