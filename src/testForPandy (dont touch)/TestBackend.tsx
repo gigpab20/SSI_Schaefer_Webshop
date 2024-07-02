@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import {ProductSevice} from "../Service/ProductSevice";
+import {ProductService} from "../Service/ProductService";
 
 const TestBackend = () => {
 
@@ -12,7 +12,7 @@ const TestBackend = () => {
 
         console.log(rangeValue);
 
-        ProductSevice.getProductsByPrice(rangeValue);
+        ProductService.getProductsByPrice(rangeValue);
     };
 
 

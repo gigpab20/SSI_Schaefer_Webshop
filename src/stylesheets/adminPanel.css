@@ -85,3 +85,13 @@
         transform: scale(0.9);
     }
 }
+
+.custom-header-bg {
+    background-color: #FFED00;
+    height: 4rem; /* Stellen Sie sicher, dass die Höhe hier definiert ist */
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

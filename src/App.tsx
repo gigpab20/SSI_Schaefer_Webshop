@@ -1,28 +1,21 @@
-import React, {ChangeEvent, useEffect , useState} from 'react';
-import "../src/stylesheets/mainPage.css"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {HardwareInt} from "./interface/HardwareInt";
 import Header from "./elements/Header";
 import Grid from "./elements/Grid";
-import { ProductSevice } from './Service/ProductSevice';
-import {Router} from "express";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { ProductService } from './Service/ProductService'; // Korrektur hier
+import { Router } from "express";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import TestBackend from "./testForPandy (dont touch)/TestBackend";
 import Login from './elements/Login';
 import Mainpage from './elements/Mainpage';
 import TestAdminPanel from "./testForPandy (dont touch)/TestAdminPanel";
 
 function App() {
-
     return (
         <div>
-
             <BrowserRouter>
                 <Routes>
-                    <Route path={"/mainpage"} element={<Mainpage/>}></Route>
-                    <Route path="/" element={<Login/>}></Route>
-                    <Route path={"/adminPanel"} element={<TestAdminPanel/>}></Route>
+                    <Route path={"/mainpage"} element={<Mainpage />} />
+                    <Route path="/" element={<Login />} />
+                    <Route path={"/adminPanel"} element={<TestAdminPanel />} />
                 </Routes>
             </BrowserRouter>
         </div>
