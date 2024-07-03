@@ -1,46 +1,89 @@
-.hardwareCard {
+.card {
+    width: 20vw; /* Maintain the same width as before */
+    height: 100%; /* Maintain the same height as before */
+    border-radius: 20px;
+    background: #f5f5f5;
+    position: relative;
+    padding: 1.8rem;
+    border: 2px solid #c3c6ce; /* Initial thin gray border */
+    transition: border-color 0.5s ease-out, box-shadow 0.5s ease-out; /* Smooth transition for hover effect */
+    overflow: visible;
+    margin: 10px; /* Maintain the same margin as before */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Maintain the same shadow as before */
+}
+
+.card-details {
+    color: black;
+    height: 100%;
+    gap: .5em;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Stellt sicher, dass der Inhalt gleichmäßig verteilt wird */
-    height: 100%; /* Oder eine feste Höhe, je nach Bedarf */
-    width: 20vw;
-    margin: 10px;
-    text-align: center;
-    background-color: #f8f9fa;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 10px; /* Fügt innen etwas Platz hinzu */
+    align-items: center;
+    justify-content: center;
 }
 
-/* Entfernt, da kein Bilderrahmen benötigt wird
-.hardwareCard img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-*/
-
-.hardwareCard button {
-    border: .5px solid black;
-    color: #333;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+.card-button {
     width: 60%;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-bottom: 10px;
-    background-color: #f8f9fa; /* Diese Zeile ist doppelt und könnte entfernt werden */
-    cursor: pointer;
+    border-radius: 1rem; /* Matching border radius */
+    border: none;
+    background-color: #008bf8;
+    color: #fff;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    opacity: 1; /* Ensure the button is visible */
+    transition: 0.3s ease-out; /* Smooth transition for button */
+    margin-top: 10px; /* Add some space above the button */
+}
+
+.text-body {
+    color: rgb(134, 134, 134);
+}
+
+/* Text */
+.text-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center; /* Center aligns the text */
+    margin: 10px 0; /* Adds spacing around the title */
+}
+
+/* Hover */
+.card:hover {
+    border-color: #f7ba2b; /* Change to yellow-red gradient */
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Button Styles */
+.btn-reserve {
+    --btn-bg-1: hsla(0, 0%, 85%, 1); /* Light gray */
+    --btn-bg-2: hsla(0, 0%, 40%, 1); /* Dark gray */
+    --btn-bg-color: hsla(0, 0%, 100%, 1); /* White */
+    --radii: 1rem; /* Matching border radius */
+    padding: 0.42em 0.68em; /* Reduced padding */
+    min-width: 54px; /* Reduced min-width */
+    min-height: 20px; /* Reduced min-height */
+    font-size: calc(var(--size, 1rem) * 0.8); /* Slightly reduced font size */
+    background-size: 280% auto;
+    background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+    border-radius: var(--radii);
+    color: var(--btn-bg-color);
+    box-shadow: 0px 0px 10px rgba(150, 150, 150, 0.5), 0px 2.5px 2.5px -1px rgba(120, 120, 120, 0.25), inset 2px 2px 4px rgba(200, 200, 200, 0.5), inset -2px -2px 4px rgba(100, 100, 100, 0.35);
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
-.hardwareCard button:hover {
-    background-color: #FFED00;
-    transform: translateY(-5px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    animation-duration: 5s;
+.btn-reserve:hover {
+    background-position: right top;
+    transform: translateY(-2.5px); /* Slightly move up */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
+.btn-reserve:is(:focus, :focus-visible, :active) {
+    outline: none;
+    box-shadow: 0 0 0 1.5px var(--btn-bg-color), 0 0 0 3px var(--btn-bg-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-reserve {
+        transition: linear;
+    }
+}

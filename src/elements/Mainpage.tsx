@@ -3,8 +3,9 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { HardwareInt } from '../interface/HardwareInt';
 import Header from './Header';
-import Grid from './Grid';
 import { MockData } from '../mockdata/MockData';
+import Grid from './Grid';
+import '../stylesheets/mainPage.css';
 
 const Mainpage = () => {
     const [hardware, setHardware] = useState<HardwareInt[]>([]);
@@ -72,4 +73,3 @@ const Mainpage = () => {
 };
 
 export default Mainpage;
-

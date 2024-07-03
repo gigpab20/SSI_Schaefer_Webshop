@@ -2,11 +2,104 @@
     background-color: #FFED00;
     height: 4rem; /* Stellen Sie sicher, dass die Höhe hier definiert ist */
 }
+
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-select, input[type=number] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 0.76em 1.22em;
+    min-width: 160px; /* Gleiche Breite */
+    min-height: 37px; /* Gleiche Höhe */
+    font-size: calc(var(--size, 1rem) * 0.9);
+    font-family: "Segoe UI", system-ui, sans-serif; /* Gleiche Schriftart */
+    font-weight: 500;
+    border: 1px solid #333333; /* Dünnerer Rand */
+    border-radius: 8px; /* Gleiche abgerundete Ecken */
+    outline: none;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s, transform 0.3s;
+    box-sizing: border-box;
+}
+
+.dropdown-select:hover, input[type=number]:hover {
+    background-color: #f0f8ff; /* Helles Blau beim Hover */
+}
+
+.dropdown-select:focus, input[type=number]:focus {
+    border-color: #333333; /* Gleiche Randfarbe beim Fokus */
+    transform: scale(1.02); /* Leichte Vergrößerung beim Fokus */
+}
+
+.dropdown-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    pointer-events: none;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown-arrow svg {
+    width: 16px;
+    height: 16px;
+    fill: #333;
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
 input[type=number] {
     -moz-appearance: textfield;
+}
+
+input[type=number]::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.btn-filter {
+    --clr-font-main: hsla(0, 0%, 20%, 1);
+    --btn-bg-1: hsla(0, 100%, 69%, 1);
+    --btn-bg-2: hsla(0, 100%, 56%, 1);
+    --btn-bg-color: hsla(360, 100%, 100%, 1);
+    --radii: 0.5em;
+    cursor: pointer;
+    padding: 0.76em 1.22em;
+    min-width: 98px;
+    min-height: 37px;
+    font-size: calc(var(--size, 1rem) * 0.9);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
+    transition: 0.8s;
+    background-size: 280% auto;
+    background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+    border: none;
+    border-radius: var(--radii);
+    color: var(--btn-bg-color);
+}
+
+.btn-filter:hover {
+    background-position: right top;
+}
+
+.btn-filter:is(:focus, :focus-visible, :active) {
+    outline: none;
+    box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-filter {
+        transition: linear;
+    }
 }

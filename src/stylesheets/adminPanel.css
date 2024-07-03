@@ -1,5 +1,4 @@
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*for Test-Admin-PANEL*/
 
 .btn-mainpage {
@@ -36,7 +35,6 @@
         transition: linear;
     }
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*for ADMIN-PANEL-FORM*/
 .btn-save {
@@ -77,4 +75,45 @@
 }
 
 
+/* Allgemeine Stile für Input-Felder im AdminPanel */
+input[type="text"], input[type="number"], input[type="date"], textarea {
+    padding: 0.76em 1.22em;
+    min-width: 160px; /* Gleiche Breite */
+    min-height: 37px; /* Gleiche Höhe */
+    font-size: calc(var(--size, 1rem) * 0.9);
+    font-family: "Segoe UI", system-ui, sans-serif; /* Gleiche Schriftart */
+    font-weight: 500;
+    border: 1px solid #333333; /* Dünnerer Rand */
+    border-radius: 8px; /* Gleiche abgerundete Ecken */
+    outline: none;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s, transform 0.3s;
+    box-sizing: border-box;
+}
+
+input[type="text"]::placeholder, input[type="number"]::placeholder, input[type="date"]::placeholder, textarea::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+input[type="text"]:hover, input[type="number"]:hover, input[type="date"]:hover, textarea:hover {
+    background-color: #f0f8ff; /* Helles Blau beim Hover */
+}
+
+input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, textarea:focus {
+    border-color: #333333; /* Gleiche Randfarbe beim Fokus */
+    transform: scale(1.02); /* Leichte Vergrößerung beim Fokus */
+}
+
+/* Spezifische Stile für input[type="number"] im AdminPanel */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
