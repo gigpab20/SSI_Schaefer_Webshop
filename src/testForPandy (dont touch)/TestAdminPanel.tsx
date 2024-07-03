@@ -111,12 +111,14 @@ function TestAdminPanel() {
         setSelectedItem(item);
     }
 
-    function onSaveChanges(item: HardwareInt) {
+    function onSaveChanges(updatedItem: HardwareInt) {
         console.log(":::::::::::::::::::::::::::::hier im onSave:::::::::::::::::::::::::::::");
-        setHardware(prevState => prevState.map(hardwareItem =>
-            hardwareItem.ANLAGENNR === item.ANLAGENNR ? item : hardwareItem
-        ));
-        setSelectedItem(item);
+        setHardware(prevState =>
+            prevState.map(item =>
+                item.ARTIKELNR === updatedItem.ARTIKELNR ? updatedItem : item
+            )
+        );
+        setSelectedItem(updatedItem);
     }
 
     return (
@@ -128,17 +130,8 @@ function TestAdminPanel() {
                     </a>
                 </div>
                 <div>
-                    <button className="btn cube cube-hover" type="button" onClick={() => navigate('/mainPage')}>
-                        <div className="bg-top">
-                            <div className="bg-inner"></div>
-                        </div>
-                        <div className="bg-right">
-                            <div className="bg-inner"></div>
-                        </div>
-                        <div className="bg">
-                            <div className="bg-inner"></div>
-                        </div>
-                        <div className="text">Main Page</div>
+                    <button className="btn-mainpage" onClick={() => navigate('/mainPage')}>
+                        Main Page
                     </button>
                 </div>
             </div>
@@ -146,7 +139,7 @@ function TestAdminPanel() {
                 <div className={"flex-none w-1/4 bg-red-400 p-4"}>
                     {hardware.length > 0 ? (
                         hardware.map(item => (
-                            <AdminItem key={item.ANLAGENNR} onChooseProduct={() => onChooseProduct(item)} item={item} />
+                            <AdminItem key={item.ARTIKELNR} onChooseProduct={() => onChooseProduct(item)} item={item} />
                         ))
                     ) : (
                         <p>Loading products...</p>

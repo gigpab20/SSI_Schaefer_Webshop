@@ -1,97 +1,80 @@
-.btn {
-    display: block;
-    padding: 0.15em 0.25em; /* Leicht vergrößert */
-    background: transparent;
-    outline: none;
-    border: 0;
-    color: #d4af37;
-    letter-spacing: 0.1em;
-    font-family: monospace;
-    font-size: 5px; /* Leicht vergrößert */
-    font-weight: bold;
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*for Test-Admin-PANEL*/
+
+.btn-mainpage {
+    --clr-font-main: hsla(0, 0%, 20%, 1);
+    --btn-bg-1: hsla(0, 0%, 85%, 1); /* Light gray */
+    --btn-bg-2: hsla(0, 0%, 40%, 1); /* Dark gray */
+    --btn-bg-color: hsla(0, 0%, 100%, 1); /* White */
+    --radii: 0.4em; /* Slightly adjusted for a larger button */
     cursor: pointer;
-    z-index: 1;
+    padding: 0.75em 1.1em; /* Slightly larger padding */
+    font-size: 0.9rem; /* Slightly larger font size */
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
+    transition: 0.8s;
+    background-size: 280% auto;
+    background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+    border: none;
+    border-radius: var(--radii);
+    color: var(--btn-bg-color);
+    box-shadow: none; /* Removed the box-shadow */
 }
 
-.cube {
-    position: relative;
-    transition: all 0.5s;
-    transform: scale(0.75); /* Skalierungsfaktor angepasst */
+.btn-mainpage:hover {
+    background-position: right top;
 }
 
-.cube .bg-top {
-    position: absolute;
-    height: 10px; /* Unverändert */
-    background: #d4af37;
-    bottom: 100%;
-    left: 5px;
-    right: -5px;
-    transform: skew(-45deg, 0);
-    margin: 0;
-    transition: all 0.4s;
+.btn-mainpage:active {
+    outline: none;
+    box-shadow: none;
 }
 
-.cube .bg-top .bg-inner {
-    bottom: 0;
+@media (prefers-reduced-motion: reduce) {
+    .btn-mainpage {
+        transition: linear;
+    }
+}
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*for ADMIN-PANEL-FORM*/
+.btn-save {
+    --clr-font-main: hsla(0, 0%, 20%, 1);
+    --btn-bg-1: hsla(194, 100%, 69%, 1); /* Light blue */
+    --btn-bg-2: hsla(217, 100%, 56%, 1); /* Darker blue */
+    --btn-bg-color: hsla(360, 100%, 100%, 1); /* White */
+    --radii: 0.5em; /* Border radius */
+    cursor: pointer;
+    padding: 0.84em 1.36em; /* Slightly increased padding */
+    min-width: 109px; /* Slightly increased min-width */
+    min-height: 41px; /* Slightly increased min-height */
+    font-size: calc(var(--size, 1rem) * 0.97); /* Slightly increased font size */
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
+    transition: 0.8s;
+    background-size: 280% auto;
+    background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+    border: none;
+    border-radius: var(--radii);
+    color: var(--btn-bg-color);
+    box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25), inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35);
 }
 
-.cube .bg {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    top: 0;
-    right: 0;
-    background: #d4af37;
-    transition: all 0.4s;
+.btn-save:hover {
+    background-position: right top;
 }
 
-.cube .bg-right {
-    position: absolute;
-    background: #d4af37;
-    top: -5px; /* Unverändert */
-    z-index: 0;
-    bottom: 5px; /* Unverändert */
-    width: 10px; /* Unverändert */
-    left: 100%;
-    transform: skew(0, -45deg);
-    transition: all 0.4s;
+.btn-save:is(:focus, :focus-visible, :active) {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
 }
 
-.cube .bg-right .bg-inner {
-    left: 0;
-}
-
-.cube .bg-inner {
-    background: #28282d;
-    position: absolute;
-    left: 2px; /* Verkleinert */
-    right: 2px; /* Verkleinert */
-    top: 2px; /* Verkleinert */
-    bottom: 2px; /* Verkleinert */
-}
-
-.cube .text {
-    position: relative;
-    transition: all 0.4s;
-}
-
-.cube:active {
-    z-index: 9999;
-    animation: bounce 0.1s linear;
-}
-
-@keyframes bounce {
-    50% {
-        transform: scale(0.9);
+@media (prefers-reduced-motion: reduce) {
+    .btn-save {
+        transition: linear;
     }
 }
 
-.custom-header-bg {
-    background-color: #FFED00;
-    height: 4rem; /* Stellen Sie sicher, dass die Höhe hier definiert ist */
-}
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+
+
