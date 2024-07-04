@@ -1,3 +1,46 @@
+/*
+        ain't pushable
+
+import React, { useEffect } from 'react';
+import '../stylesheets/Login.css';
+import { useNavigate } from 'react-router-dom';
+
+const Login = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
+        if (token) {
+            localStorage.setItem('authToken', token);
+            navigate('/mainpage');
+        }
+    }, [navigate]);
+
+    const handleLogin = () => {
+        window.location.href = 'http://localhost:3002/auth/google'; // Updated to port 3002
+    };
+
+    return (
+        <div className="all">
+            <img className="logo-schaefer"
+                 src={process.env.PUBLIC_URL + "/assets/logo-ssi-schaefer-svg-data.png"} alt="SSI Schaefer Logo"/>
+            <div className="login-container">
+                <button className="login-button" onClick={handleLogin}>Log in with Google</button>
+            </div>
+            <div className="footer">
+                <div className="motto">Think Tomorrow</div>
+            </div>
+        </div>
+    );
+};
+
+export default Login;
+*/
+
+
+
 import React, {useState} from 'react';
 import '../stylesheets/Login.css'
 import { useNavigate } from 'react-router-dom';
