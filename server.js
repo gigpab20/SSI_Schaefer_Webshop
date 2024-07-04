@@ -1,4 +1,4 @@
-/*                                  start with: node server.js
+//                                  start with: node server.js
 //                                  COMMIT AINT POSSIBLE
 const express = require('express');
 const passport = require('passport');
@@ -50,4 +50,3 @@ app.get('/auth/google/callback',
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
-*/

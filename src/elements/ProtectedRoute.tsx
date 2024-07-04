@@ -1,4 +1,4 @@
-/*                  ain't pushable
+                  //ain't pushable
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
@@ -13,5 +13,5 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 };
 
 export default ProtectedRoute;
-*/
+
 

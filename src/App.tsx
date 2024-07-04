@@ -1,4 +1,4 @@
-/*                          ain't pushable....
+//                          ain't pushable....
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -34,7 +34,7 @@ const App: React.FC = () => {
 };
 
 export default App;
-*/
+/*
 
 import Header from "./elements/Header";
 import { ProductService } from './Service/ProductService'; // Korrektur hier
@@ -59,3 +59,6 @@ function App() {
 }
 
 export default App;
+
+
+ */
