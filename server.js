@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const app = express();
@@ -17,7 +18,8 @@ passport.use(new GoogleStrategy({
         callbackURL: "http://localhost:3002/auth/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
-        profile.token = accessToken;
+        const token = jwt.sign({ id: profile.id, username: profile.displayName }, JWT_SECRET, { expiresIn: '1h' });
+        profile.jwtToken = token;
         return done(null, profile);
     }
 ));
@@ -41,7 +43,7 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
     (req, res) => {
-        const token = req.user.token;
+        const token = req.user.jwtToken;
         res.redirect(`http://localhost:3000?token=${token}`);
     }
 );

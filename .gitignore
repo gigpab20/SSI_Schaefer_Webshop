@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 
+dist/
+
+# Logs
+logs/
+*.log
+
 # testing
 /coverage
 
@@ -21,3 +27,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# System files
+.DS_Store
+Thumbs.db

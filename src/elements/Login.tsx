@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import '../stylesheets/Login.css';
 import { useNavigate } from 'react-router-dom';
+import '../stylesheets/Login.css';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -9,14 +9,17 @@ const Login = () => {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
 
+        console.log("Token from URL:", token); // Debugging-Log
+
         if (token) {
             localStorage.setItem('authToken', token);
+            console.log("Token saved to localStorage:", localStorage.getItem('authToken')); // Debugging-Log
             navigate('/mainpage');
         }
     }, [navigate]);
 
     const handleLogin = () => {
-        window.location.href = 'http://localhost:3002/auth/google'; // Updated to port 3002
+        window.location.href = 'http://localhost:3002/auth/google'; // Aktualisiert auf Port 3002
     };
 
     return (

@@ -1,10 +1,18 @@
-import express, {Router, Request, Response, NextFunction} from "express";
+import express, { Router, Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { findUserByUsername } from "../src/mockdata/mockdata";
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 let router = express.Router();
 
-const JWT_SECRET = 'your_jwt_secret_key';  // In einer echten Anwendung sollte dies sicherer sein
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+    throw new Error('JWT_SECRET is not defined in the environment variables');
+}
 
 router.post('/login', async (req: Request, res: Response, next: NextFunction) => {
     const { username, password } = req.body;
@@ -33,5 +41,4 @@ router.get('/profile', (req: Request, res: Response, next: NextFunction) => {
     });
 });
 
-
-module.exports = router;
+export default router;
