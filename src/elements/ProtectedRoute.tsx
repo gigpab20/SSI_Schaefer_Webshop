@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode'; // Importiere jwtDecode aus jwt-decode
+import {jwtDecode} from 'jwt-decode';
 
 interface ProtectedRouteProps {
     children: React.ReactNode;
@@ -19,7 +19,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     if (token) {
         try {
             const decodedToken: DecodedToken = jwtDecode<DecodedToken>(token); // Verwende jwtDecode statt jwt_decode
-            isAuthenticated = !!decodedToken;
+            const currentTime = Date.now() / 1000; // aktuelle Zeit in Sekunden
+            isAuthenticated = decodedToken.exp > currentTime;
         } catch (error) {
             console.error("Token decoding failed:", error);
         }

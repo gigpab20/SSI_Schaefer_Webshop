@@ -2,8 +2,8 @@ import React from 'react';
 import { HardwareInt } from "../interface/HardwareInt";
 
 interface AdminItemProps {
-    onChooseProduct: (item: HardwareInt) => void
-    item: HardwareInt
+    onChooseProduct: (item: HardwareInt) => void;
+    item: HardwareInt;
 }
 
 function AdminItem({ onChooseProduct, item }: AdminItemProps) {

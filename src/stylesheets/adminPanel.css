@@ -1,6 +1,3 @@
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*for Test-Admin-PANEL*/
-
 .btn-mainpage {
     --clr-font-main: hsla(0, 0%, 20%, 1);
     --btn-bg-1: hsla(0, 0%, 85%, 1); /* Light gray */
@@ -35,8 +32,7 @@
         transition: linear;
     }
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*for ADMIN-PANEL-FORM*/
+
 .btn-save {
     --clr-font-main: hsla(0, 0%, 20%, 1);
     --btn-bg-1: hsla(194, 100%, 69%, 1); /* Light blue */
@@ -74,17 +70,15 @@
     }
 }
 
-
-/* Allgemeine Stile für Input-Felder im AdminPanel */
 input[type="text"], input[type="number"], input[type="date"], textarea {
     padding: 0.76em 1.22em;
-    min-width: 160px; /* Gleiche Breite */
-    min-height: 37px; /* Gleiche Höhe */
+    min-width: 160px;
+    min-height: 37px;
     font-size: calc(var(--size, 1rem) * 0.9);
-    font-family: "Segoe UI", system-ui, sans-serif; /* Gleiche Schriftart */
+    font-family: "Segoe UI", system-ui, sans-serif;
     font-weight: 500;
-    border: 1px solid #333333; /* Dünnerer Rand */
-    border-radius: 8px; /* Gleiche abgerundete Ecken */
+    border: 1px solid #333333;
+    border-radius: 8px;
     outline: none;
     background-color: #fff;
     color: #333;
@@ -98,15 +92,14 @@ input[type="text"]::placeholder, input[type="number"]::placeholder, input[type="
 }
 
 input[type="text"]:hover, input[type="number"]:hover, input[type="date"]:hover, textarea:hover {
-    background-color: #f0f8ff; /* Helles Blau beim Hover */
+    background-color: #f0f8ff;
 }
 
 input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, textarea:focus {
-    border-color: #333333; /* Gleiche Randfarbe beim Fokus */
-    transform: scale(1.02); /* Leichte Vergrößerung beim Fokus */
+    border-color: #333333;
+    transform: scale(1.02);
 }
 
-/* Spezifische Stile für input[type="number"] im AdminPanel */
 input[type="number"] {
     -moz-appearance: textfield;
 }
@@ -116,4 +109,3 @@ input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
