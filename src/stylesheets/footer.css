@@ -17,11 +17,22 @@
 }
 
 .footer-link {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Kleinere Schriftgröße */
     color: #333; /* Farbe der Links */
     text-decoration: none;
 }
 
 .footer-link:hover {
     text-decoration: underline;
+}
+
+.footer-motto {
+    font-size: 1.2rem;
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    color: #FFED00;
+    background-color: black;
+    padding: 8px;
+    border-radius: 5px;
 }

@@ -10,6 +10,7 @@ const Footer: React.FC = () => {
                 <Link to="/agb" className="footer-link" target="_blank">AGB</Link>
                 <Link to="/rueckgabe" className="footer-link" target="_blank">Rückgabe</Link>
             </div>
+            <div className="footer-motto">Think Tomorrow</div>
         </footer>
     );
 };
