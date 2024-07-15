@@ -1,32 +1,3 @@
-
-.custom-footer-bg {
-    background-color: #FFED00; /* Gleiche Farbe wie der Header */
-    height: 4rem; /* Stellen Sie sicher, dass die Höhe hier definiert ist */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%; /* Ensure the footer spans the entire width of the viewport */
-    position: relative;
-    left: 0;
-    padding: 0 16px; /* Match the header padding */
-    box-sizing: border-box;
-}
-
-.footer-links {
-    display: flex;
-    gap: 1rem; /* Abstand zwischen den Links */
-}
-
-.footer-link {
-    font-size: 1rem;
-    color: #333; /* Farbe der Links */
-    text-decoration: none;
-}
-
-.footer-link:hover {
-    text-decoration: underline;
-}
-
 .main-page-container {
     display: flex;
     flex-direction: column;
@@ -34,15 +5,5 @@
 }
 
 .content {
-    flex: 1;
-}
-
-.app-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.main-content {
     flex: 1;
 }

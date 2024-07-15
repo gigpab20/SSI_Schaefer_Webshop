@@ -1,0 +1,27 @@
+.custom-footer-bg {
+    background-color: #FFED00; /* Gleiche Farbe wie der Header */
+    height: 4rem; /* Gleiche Höhe wie der Header */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Gleiche Ausrichtung wie der Header */
+    padding: 0 16px; /* Gleiche Polsterung wie der Header */
+    box-sizing: border-box;
+    width: 100%; /* Volle Breite */
+    position: relative; /* Nicht fixiert */
+    bottom: 0;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1rem; /* Abstand zwischen den Links */
+}
+
+.footer-link {
+    font-size: 1rem;
+    color: #333; /* Farbe der Links */
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
