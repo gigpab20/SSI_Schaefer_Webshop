@@ -5,6 +5,7 @@ import { HardwareInt } from '../interface/HardwareInt';
 import Header from './Header';
 import { MockData } from '../mockdata/MockData';
 import Grid from './Grid';
+import Footer from './Footer';
 import '../stylesheets/mainPage.css';
 
 const Mainpage = () => {
@@ -61,13 +62,16 @@ const Mainpage = () => {
     };
 
     return (
-        <div>
-            <Header headerProps={{
-                handleSortChange: handleSortChange,
-                handleRangeChange: handleRangeChange,
-                onFilterPrice: onFilterPrice
-            }} />
-            <Grid gridProps={{ hardware, onBuy: handleBuy }} />
+        <div className="main-page-container">
+            <Header
+                handleSortChange={handleSortChange}
+                handleRangeChange={handleRangeChange}
+                onFilterPrice={onFilterPrice}
+            />
+            <div className="content">
+                <Grid gridProps={{ hardware, onBuy: handleBuy }} />
+            </div>
+            <Footer />
         </div>
     );
 };

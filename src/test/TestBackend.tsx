@@ -15,7 +15,6 @@ const TestBackend = () => {
         ProductService.getProductsByPrice(rangeValue);
     };
 
-
     return (
         <div>
             <input type={"number"} id={"priceRange"} value={rangeValue} min={0} max={150} onChange={handleRangeChange}/>

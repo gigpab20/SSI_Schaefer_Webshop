@@ -7,7 +7,7 @@ interface HeaderProps {
     onFilterPrice: () => void;
 }
 
-const Header: React.FC<{ headerProps: HeaderProps }> = ({ headerProps }) => {
+const Header: React.FC<HeaderProps> = ({ handleSortChange, handleRangeChange, onFilterPrice }) => {
     return (
         <div>
             <header className="flex justify-between items-center custom-header-bg p-4">
@@ -16,7 +16,7 @@ const Header: React.FC<{ headerProps: HeaderProps }> = ({ headerProps }) => {
                 </a>
                 <div className="flex space-x-4">
                     <div className="dropdown-container">
-                        <select className="dropdown-select" onChange={headerProps.handleSortChange}>
+                        <select className="dropdown-select" onChange={handleSortChange}>
                             <option value="priceHighToLow">Price high-to-low</option>
                             <option value="priceLowToHigh">Price low-to-high</option>
                             <option value="nameAtoZ">Name A-Z</option>
@@ -29,10 +29,10 @@ const Header: React.FC<{ headerProps: HeaderProps }> = ({ headerProps }) => {
                         </span>
                     </div>
                     <input type="number" placeholder="Price" id="filterPrice" min={0} max={150}
-                           onChange={headerProps.handleRangeChange} />
+                           onChange={handleRangeChange} />
                     <input type="button" value="Filter"
                            className="btn-filter"
-                           onClick={headerProps.onFilterPrice} />
+                           onClick={onFilterPrice} />
                 </div>
             </header>
         </div>

@@ -58,6 +58,7 @@ function TestAdminPanel() {
                     </button>
                 </div>
             </div>
+
             <div className={"flex flex-grow"}>
                 <div className={"flex-none w-1/4 bg-red-400 p-4"}>
                     {hardware.length > 0 ? (
