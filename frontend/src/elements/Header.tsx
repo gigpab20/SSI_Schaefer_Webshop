@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import "../stylesheets/header.css";
+import "../../src/stylesheets/header.css";
 
 interface HeaderProps {
     handleSortChange: (event: ChangeEvent<HTMLSelectElement>) => void;

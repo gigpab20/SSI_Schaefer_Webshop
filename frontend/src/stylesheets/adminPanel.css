@@ -1,3 +1,38 @@
+.admin-panel-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.admin-panel-header {
+    background-color: #FFED00;
+    height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.admin-panel-content {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.admin-item-list {
+    flex: 1;
+    overflow-y: auto; /* Scrollbar für die AdminItem-Liste */
+    background-color: #dd6666; /* Ursprünglich aggressives/starkes Rot */
+    padding: 16px;
+}
+
+.admin-item-form {
+    flex: 2;
+    background-color: #ffffff;
+    padding: 16px;
+    overflow-y: auto; /* Optional, falls die Form sehr groß wird */
+}
+
 .btn-mainpage {
     --clr-font-main: hsla(0, 0%, 20%, 1);
     --btn-bg-1: hsla(0, 0%, 85%, 1); /* Light gray */
@@ -5,8 +40,8 @@
     --btn-bg-color: hsla(0, 0%, 100%, 1); /* White */
     --radii: 0.4em; /* Slightly adjusted for a larger button */
     cursor: pointer;
-    padding: 0.75em 1.1em; /* Slightly larger padding */
-    font-size: 0.9rem; /* Slightly larger font size */
+    padding: 0.5em 0.8em; /* Slightly smaller padding */
+    font-size: 0.9rem; /* Font size remains the same */
     font-family: "Segoe UI", system-ui, sans-serif;
     font-weight: 500;
     transition: 0.8s;

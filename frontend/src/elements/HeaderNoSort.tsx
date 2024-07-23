@@ -1,5 +1,5 @@
 import React from 'react';
-import "../stylesheets/header.css";
+import "../../src/stylesheets/header.css";
 
 const HeaderNoSort: React.FC = () => {
     return (

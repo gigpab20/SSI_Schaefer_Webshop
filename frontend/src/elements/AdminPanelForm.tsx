@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { HardwareInt } from '../interface/HardwareInt';
-import '../stylesheets/adminPanel.css';
+import { HardwareInt } from '../../src/interface/HardwareInt';
+import '../../src/stylesheets/adminPanel.css';
 
 interface AdminPanelProps {
     item: HardwareInt;

@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderNoSort from './HeaderNoSort';
-import '../stylesheets/contentPage.css';
+import '../../src/stylesheets/contentPage.css';
 
 const Rueckgabe: React.FC = () => {
     return (

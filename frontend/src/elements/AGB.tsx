@@ -1,5 +1,5 @@
 import React from 'react';
-import '../stylesheets/contentPage.css';
+import '../../src/stylesheets/contentPage.css';
 import HeaderNoSort from './HeaderNoSort';
 
 const AGB: React.FC = () => {

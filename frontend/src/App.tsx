@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Login from './elements/Login';
 import Mainpage from './elements/Mainpage';
 import TestAdminPanel from './test/TestAdminPanel';
@@ -10,7 +10,7 @@ import Rueckgabe from './elements/Rueckgabe';
 
 const App: React.FC = () => {
     return (
-        <Router>
+        <HashRouter basename="/">
             <div className="app-container">
                 <Routes>
                     <Route path="/" element={<Login />} />
@@ -35,38 +35,8 @@ const App: React.FC = () => {
                     <Route path="/rueckgabe" element={<Rueckgabe />} />
                 </Routes>
             </div>
-        </Router>
+        </HashRouter>
     );
 };
 
 export default App;
-
-//                          ain't pushable....
-/*
-
-import Header from "./elements/Header";
-import { ProductService } from './Service/ProductService'; // Korrektur hier
-import { Router } from "express";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from './elements/Login';
-import Mainpage from './elements/Mainpage';
-import TestAdminPanel from "./test/TestAdminPanel";
-
-function App() {
-    return (
-        <div>
-            <BrowserRouter>
-                <Routes>
-                    <Route path={"/mainpage"} element={<Mainpage />} />
-                    <Route path="/" element={<Login />} />
-                    <Route path={"/adminPanel"} element={<TestAdminPanel />} />
-                </Routes>
-            </BrowserRouter>
-        </div>
-    );
-}
-
-export default App;
-
-
- */

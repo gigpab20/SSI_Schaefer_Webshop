@@ -1,5 +1,5 @@
 import React from 'react';
-import { HardwareInt } from "../interface/HardwareInt";
+import { HardwareInt } from "../../src/interface/HardwareInt";
 import HardwareCard from "./HardwareCard";
 
 interface GridProps {

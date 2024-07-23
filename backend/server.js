@@ -3,6 +3,9 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
@@ -47,6 +50,40 @@ app.get('/auth/google/callback',
         res.redirect(`http://localhost:3000?token=${token}`);
     }
 );
+
+// Nodemailer-Konfiguration
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
+
+// Body Parser Middleware
+app.use(bodyParser.json());
+app.use(cors());
+
+// Route zum Senden von E-Mails
+app.post('/send-email', (req, res) => {
+    const { email, subject, text } = req.body;
+
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: subject,
+        text: text
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error while sending email:', error);
+            return res.status(500).send(error.toString());
+        }
+        console.log('Email sent:', info.response);
+        res.send('Email sent: ' + info.response);
+    });
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

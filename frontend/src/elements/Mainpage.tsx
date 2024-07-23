@@ -1,12 +1,12 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { HardwareInt } from '../interface/HardwareInt';
+import { HardwareInt } from '../../src/interface/HardwareInt';
 import Header from './Header';
-import { MockData } from '../mockdata/MockData';
+import { MockData } from '../../src/mockdata/MockData';
 import Grid from './Grid';
 import Footer from './Footer';
-import '../stylesheets/mainPage.css';
+import '../../src/stylesheets/mainPage.css';
 
 const Mainpage = () => {
     const [hardware, setHardware] = useState<HardwareInt[]>([]);
