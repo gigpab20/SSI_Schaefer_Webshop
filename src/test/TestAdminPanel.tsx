@@ -45,8 +45,8 @@ function TestAdminPanel() {
     }
 
     return (
-        <div className={"flex flex-col h-screen"}>
-            <div className={"flex-none h-16 custom-header-bg flex items-center justify-between px-4"}>
+        <div className="admin-panel-container">
+            <div className="admin-panel-header">
                 <div>
                     <a href="https://www.ssi-schaefer.com/de-at" target="_blank" rel="noopener noreferrer">
                         <img className="h-12 w-auto" src="/assets/schäfer-logo-removebg.png" alt="SSI Schäfer Logo"/>
@@ -59,8 +59,8 @@ function TestAdminPanel() {
                 </div>
             </div>
 
-            <div className={"flex flex-grow"}>
-                <div className={"flex-none w-1/4 bg-red-400 p-4"}>
+            <div className="admin-panel-content">
+                <div className="admin-item-list">
                     {hardware.length > 0 ? (
                         hardware.map(item => (
                             <AdminItem key={item.ARTIKELNR} onChooseProduct={() => onChooseProduct(item)} item={item} />
@@ -69,7 +69,9 @@ function TestAdminPanel() {
                         <p>Loading products...</p>
                     )}
                 </div>
-                <AdminPanelForm item={selectedItem} onSave={onSaveChanges} />
+                <div className="admin-item-form">
+                    <AdminPanelForm item={selectedItem} onSave={onSaveChanges} />
+                </div>
             </div>
         </div>
     );
