@@ -23,10 +23,15 @@ function TestAdminPanel() {
     });
 
     useEffect(() => {
-        const products = MockData.getMockHardwareData(); // Verwenden Sie Mock-Daten
-        console.log("Products loaded: ", products);
-        setHardware(products);
-    }, []);
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            navigate('/');
+        } else {
+            const products = MockData.getMockHardwareData(); // Verwenden Sie Mock-Daten
+            console.log("Products loaded: ", products);
+            setHardware(products);
+        }
+    }, [navigate]);
 
     function onChooseProduct(item: HardwareInt) {
         setSelectedItem(item);
