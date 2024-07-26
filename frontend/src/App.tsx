@@ -10,7 +10,7 @@ import Rueckgabe from './elements/Rueckgabe';
 
 const App: React.FC = () => {
     return (
-        <HashRouter>
+        <HashRouter basename="/">
             <div className="app-container">
                 <Routes>
                     <Route path="/" element={<Login />} />
