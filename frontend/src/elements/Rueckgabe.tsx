@@ -46,7 +46,7 @@ const Rueckgabe: React.FC = () => {
                     zu bieten und stehen Ihnen bei Fragen oder Anliegen jederzeit zur Verfügung.
                 </p>
 
-                <button className="button" onClick={() => navigate("/")}>
+                <button className="button" onClick={() => navigate("/mainpage")}>
                     Zurück
                 </button>
             </div>

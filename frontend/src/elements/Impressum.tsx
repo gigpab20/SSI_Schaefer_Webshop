@@ -68,7 +68,7 @@ const Impressum: React.FC = () => {
                     Verbraucherschlichtungsstelle teilzunehmen.
                 </p>
 
-                <button className="button" onClick={() => navigate("/")}>
+                <button className="button" onClick={() => navigate("/mainpage")}>
                     Zurück
                 </button>
             </div>

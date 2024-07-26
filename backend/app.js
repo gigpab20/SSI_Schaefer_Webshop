@@ -4,12 +4,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
 
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user');
-var productsRouter = require('./routes/products')
+var productsRouter = require('./routes/products');
 
-const {connectDB} = require('./src/db/util.service.db')
+const {connectDB} = require('./src/db/util.service.db');
 connectDB();
 
 var app = express();

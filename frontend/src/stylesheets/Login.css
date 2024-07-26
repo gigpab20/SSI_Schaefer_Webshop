@@ -66,3 +66,12 @@
     font-weight: bold;
     color: #ffed00;
 }
+
+.input-field.input-error {
+    border: 2px solid red;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}

@@ -1,25 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../../src/stylesheets/Login.css';
 
-const Login = () => {
+const Login: React.FC = () => {
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [error, setError] = useState<string>('');
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
-
-        console.log("Token from URL:", token); // Debugging-Log
-
-        if (token) {
+    const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:3001/user/login', { username, password });
+            const token = response.data.token;
             localStorage.setItem('authToken', token);
-            console.log("Token saved to localStorage:", localStorage.getItem('authToken')); // Debugging-Log
             navigate('/mainpage');
+        } catch (error) {
+            setError('Invalid username or password');
         }
-    }, [navigate]);
-
-    const handleLogin = () => {
-        window.location.href = 'http://localhost:3002/auth/google'; // Aktualisiert auf Port 3002
     };
 
     return (
@@ -27,7 +26,26 @@ const Login = () => {
             <img className="logo-schaefer"
                  src={process.env.PUBLIC_URL + "/assets/logo-ssi-schaefer-svg-data.png"} alt="SSI Schaefer Logo"/>
             <div className="login-container">
-                <button className="login-button" onClick={handleLogin}>Log in with Google</button>
+                <form onSubmit={handleLogin}>
+                    <input
+                        type="text"
+                        className={`input-field ${error ? 'input-error' : ''}`}
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="password"
+                        className={`input-field ${error ? 'input-error' : ''}`}
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <button type="submit" className="login-button">Login</button>
+                </form>
+                {error && <p className="error-message">{error}</p>}
             </div>
             <div className="footer">
                 <div className="motto">Think Tomorrow</div>

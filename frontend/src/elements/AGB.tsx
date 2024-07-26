@@ -72,7 +72,7 @@ const AGB: React.FC = () => {
                     SSI Schäfer
                 </p>
 
-                <button className="button" onClick={() => navigate("/")}>
+                <button className="button" onClick={() => navigate("/mainpage")}>
                     Zurück
                 </button>
             </div>

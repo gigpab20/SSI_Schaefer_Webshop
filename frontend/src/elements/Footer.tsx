@@ -6,9 +6,9 @@ const Footer: React.FC = () => {
     return (
         <footer className="custom-footer-bg">
             <div className="footer-links">
-                <Link to="/impressum" className="footer-link" target="_blank">Impressum</Link>
-                <Link to="/agb" className="footer-link" target="_blank">AGB</Link>
-                <Link to="/rueckgabe" className="footer-link" target="_blank">Rückgabe</Link>
+                <Link to="/impressum" className="footer-link" >Impressum</Link>
+                <Link to="/agb" className="footer-link" >AGB</Link>
+                <Link to="/rueckgabe" className="footer-link">Rückgabe</Link>
             </div>
             <div className="footer-motto">Think Tomorrow</div>
         </footer>

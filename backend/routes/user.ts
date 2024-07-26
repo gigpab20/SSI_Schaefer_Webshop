@@ -1,4 +1,4 @@
-import express, { Router, Request, Response, NextFunction } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { findUserByUsername } from "../src/mockdata/mockdata";
