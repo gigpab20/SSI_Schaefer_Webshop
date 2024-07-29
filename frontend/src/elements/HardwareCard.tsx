@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../src/stylesheets/hardwareCard.css';
 import { HardwareInt } from "../../src/interface/HardwareInt";
 import axios from 'axios';
@@ -9,21 +9,38 @@ interface HardwareProps {
 }
 
 const HardwareCard: React.FC<{ hardwareItem: HardwareProps }> = ({ hardwareItem }) => {
+    const [anzahl] = useState('1'); // Dynamisch anpassbar
+    const [persnr] = useState('914798'); // Dynamisch anpassbar, da wir nicht die persnr haben aber in der prozedur ist
+
     const handleReservation = async () => {
         try {
             hardwareItem.onBuy(hardwareItem.item);
 
-            await axios.post('http://localhost:3002/send-email', {
+            const reserveResponse = await axios.post('http://localhost:3001/products/reserve', {
+                artikel: hardwareItem.item.ARTIKELNR,
+                anzahl: anzahl,
+                persnr: persnr
+            });
+
+            console.log('Reservation response:', reserveResponse.data);
+
+            const emailResponse = await axios.post('http://localhost:3001/send-email', {
                 email: 'jonas.brunner2802@gmail.com',
                 subject: `Reservierung: ${hardwareItem.item.ARTIKELNR}`,
                 text: `Sie haben erfolgreich ${hardwareItem.item.BEZEICH} reserviert.`
             });
-        } catch (error) {
+
+            console.log('Email response:', emailResponse.data);
+
+        } catch (error: any) {  // Typisieren Sie den Fehler als `any`
             console.error('Error during reservation:', error);
+            if (error.response) {
+                console.error('Response data:', error.response.data);
+            }
             alert('Es gab einen Fehler bei der Reservierung. Bitte versuchen Sie es erneut.');
         }
     };
-//C:\inetpub\wwwroot_tools\
+
     return (
         <div className="card">
             <div className="card-details">

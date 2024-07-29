@@ -1,35 +1,73 @@
-import express, {Router, Request, Response} from "express";
-import {getAll, getAllInPrice, updateProduct} from "../src/db/util.service.db";
-import {HardwareInt} from "../src/model/HardwareInt"
+import express, { Router, Request, Response } from "express";
+import { getAll, getAllInPrice, updateProduct, reserveHardware, returnHardware, getHardwareTransactions } from "../src/db/util.service.db";
+import { HardwareInt } from "../src/model/HardwareInt";
 
 let router = express.Router();
 
-router.get  ('/', async (req: Request, res:Response) =>{
-
-  const result = await getAll();
-  res.json(result)
+router.get('/', async (req: Request, res: Response) => {
+  try {
+    const result = await getAll();
+    res.json(result);
+  } catch (error) {
+    console.error("Error in GET /products:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
-router.get("/:price", async (req: Request, res: Response) => {
+router.get('/:price', async (req: Request, res: Response) => {
   const priceParam = parseInt(req.params.price);
-  console.log("::::::::::::::: in express route :::::::::::::::");
-  console.log(priceParam);
+  try {
+    const dbResponse = await getAllInPrice(priceParam);
+    res.json(dbResponse);
+  } catch (error) {
+    console.error("Error in GET /products/:price:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
-  const dbResponse = await getAllInPrice(priceParam);
-
-  console.log(dbResponse);
-
-  res.json(dbResponse);
-})
-
-router.patch("/", async (req: Request, res: Response) => {
+router.patch('/', async (req: Request, res: Response) => {
   const item = req.body.item;
-  console.log("::::::::::::::::in Patch in products.ts::::::::::::::::");
-  console.log(item);
+  try {
+    await updateProduct(item);
+    res.sendStatus(200);
+  } catch (error) {
+    console.error("Error in PATCH /products:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
-  await updateProduct(item)
-  //TODO: make the post and verify that the item is the actual param
-})
+router.post('/reserve', async (req: Request, res: Response) => {
+  const { artikel, anzahl, persnr } = req.body;
+  try {
+    console.log("Received reserve request:", artikel, anzahl, persnr);
+    await reserveHardware(artikel, anzahl, persnr);
+    res.sendStatus(200);
+  } catch (error) {
+    console.error("Error in POST /products/reserve:", error);
+    res.status(500).json({ message: "Reservation failed" });
+  }
+});
+
+router.post('/return', async (req: Request, res: Response) => {
+  const { artikel, anzahl, persnr } = req.body;
+  try {
+    await returnHardware(artikel, anzahl, persnr);
+    res.sendStatus(200);
+  } catch (error) {
+    console.error("Error in POST /products/return:", error);
+    res.status(500).json({ message: "Return failed" });
+  }
+});
+
+router.get('/transactions', async (req: Request, res: Response) => {
+  const { datumVon, datumBis } = req.query;
+  try {
+    const result = await getHardwareTransactions(datumVon as string, datumBis as string);
+    res.json(result);
+  } catch (error) {
+    console.error("Error in GET /products/transactions:", error);
+    res.status(500).json({ message: "Failed to fetch transactions" });
+  }
+});
 
 module.exports = router;
-

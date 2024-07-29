@@ -13,12 +13,12 @@ const App: React.FC = () => {
         <HashRouter basename="/">
             <div className="app-container">
                 <Routes>
-                    <Route path="/" element={<Login />} />
+                    <Route path="/" element={<Login/>}/>
                     <Route
                         path="/mainpage"
                         element={
                             <ProtectedRoute>
-                                <Mainpage />
+                                <Mainpage/>
                             </ProtectedRoute>
                         }
                     />
@@ -26,13 +26,13 @@ const App: React.FC = () => {
                         path="/adminPanel"
                         element={
                             <ProtectedRoute>
-                                <TestAdminPanel />
+                                <TestAdminPanel/>
                             </ProtectedRoute>
                         }
                     />
-                    <Route path="/impressum" element={<Impressum />} />
-                    <Route path="/agb" element={<AGB />} />
-                    <Route path="/rueckgabe" element={<Rueckgabe />} />
+                    <Route path="/impressum" element={<Impressum/>}/>
+                    <Route path="/agb" element={<AGB/>}/>
+                    <Route path="/rueckgabe" element={<Rueckgabe/>}/>
                 </Routes>
             </div>
         </HashRouter>
