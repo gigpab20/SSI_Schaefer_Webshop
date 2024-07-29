@@ -5,10 +5,10 @@ var logger = require('morgan');
 const cors = require('cors');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/user');
-var productsRouter = require('./routes/products');
+var usersRouter = require('./routes/user');  // Stellen Sie sicher, dass dies der korrekte Pfad ist
+var productsRouter = require('./routes/products');  // Stellen Sie sicher, dass dies der korrekte Pfad ist
 
-const {connectDB} = require('./src/db/util.service.db');
+const { connectDB } = require('./src/db/util.service.db');
 connectDB();
 
 var app = express();
@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/user', usersRouter);
-app.use('/products', productsRouter);
+app.use('/user', usersRouter);  // Verwenden Sie den korrekten Router
+app.use('/products', productsRouter);  // Verwenden Sie den korrekten Router
 
 module.exports = app;

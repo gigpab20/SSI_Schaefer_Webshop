@@ -1,11 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { findUserByUsername } = require('./src/mockdata/mockdata');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const { findUserByUsername, users } = require('./src/mockdata/mockdata');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3001; // Ändern Sie den Port zu 3001
+const PORT = process.env.PORT || 3001;
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -20,25 +22,6 @@ app.post('/user/login', (req, res) => {
     }
     const token = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
-});
-
-app.post('/send-email', (req, res) => {
-    const { email, subject, text } = req.body;
-    const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: email,
-        subject: subject,
-        text: text
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error('Error while sending email:', error);
-            return res.status(500).send(error.toString());
-        }
-        console.log('Email sent:', info.response);
-        res.send('Email sent: ' + info.response);
-    });
 });
 
 app.listen(PORT, () => {

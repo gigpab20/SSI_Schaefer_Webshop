@@ -24,20 +24,14 @@ const HardwareCard: React.FC<{ hardwareItem: HardwareProps }> = ({ hardwareItem 
 
             console.log('Reservation response:', reserveResponse.data);
 
-            const emailResponse = await axios.post('http://localhost:3001/send-email', {
-                email: 'jonas.brunner2802@gmail.com',
-                subject: `Reservierung: ${hardwareItem.item.ARTIKELNR}`,
-                text: `Sie haben erfolgreich ${hardwareItem.item.BEZEICH} reserviert.`
-            });
-
-            console.log('Email response:', emailResponse.data);
-
         } catch (error: any) {  // Typisieren Sie den Fehler als `any`
             console.error('Error during reservation:', error);
             if (error.response) {
                 console.error('Response data:', error.response.data);
+                console.error(`Es gab einen Fehler bei der Reservierung: ${error.response.data.message || error.response.data}`);
+            } else {
+                console.error('Es gab einen Fehler bei der Reservierung. Bitte versuchen Sie es erneut.');
             }
-            alert('Es gab einen Fehler bei der Reservierung. Bitte versuchen Sie es erneut.');
         }
     };
 

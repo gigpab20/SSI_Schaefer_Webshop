@@ -16,7 +16,7 @@ const Login: React.FC = () => {
             const token = response.data.token;
             localStorage.setItem('authToken', token);
             navigate('/mainpage');
-        } catch (error) {
+        } catch (error: any) {
             setError('Invalid username or password');
         }
     };
