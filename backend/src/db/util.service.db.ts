@@ -2,10 +2,10 @@ import sql from 'mssql';
 import { HardwareInt } from "../model/HardwareInt";
 
 const dbConfig: sql.config = {
-    user: 'PEEMDOMAIN\\jbn',
-    password: 'ssigraz0815!',
-    server: 'atgradbtst01',
-    database: 'AMS_GRA'
+    user: 'GarageSales',
+    password: 'GarageSales',
+    server: 'atgradwh.peemdomain.at',
+    database: 'EDVINTERN'
 };
 
 export const connectDB = async () => {
@@ -19,9 +19,12 @@ export const connectDB = async () => {
 
 export const getAll = async () => {
     let pool: sql.ConnectionPool | null = null;
+
+    console.log("haöüsaa");
+
     try {
         pool = await sql.connect(dbConfig);
-        const result = await pool.request().query('SELECT * FROM ARTIKELTABLE ORDER BY PREIS ASC');
+        const result = await pool.request().query('SELECT * FROM Produkte_Jonas ORDER BY PREIS ASC');
 
         const hardwareData: HardwareInt[] = result.recordset.map((row: any) => {
             return {
@@ -37,9 +40,11 @@ export const getAll = async () => {
             };
         });
 
+        console.log(hardwareData);
+
         return hardwareData;
     } catch (error) {
-        console.error("Fehler beim Abrufen aller Hardwareartikel:", error);
+        console.error("Fehler beim Abrufen alter Hardwareartikel:", error);
         throw error;
     } finally {
         if (pool) {
@@ -52,7 +57,7 @@ export const getAllInPrice = async (price: number) => {
     let pool: sql.ConnectionPool | null = null;
     try {
         pool = await sql.connect(dbConfig);
-        const result = await pool.request().query(`SELECT * FROM ARTIKELTABLE WHERE PREIS < ${price} ORDER BY PREIS ASC`);
+        const result = await pool.request().query(`SELECT * FROM Produkte_Jonas WHERE PREIS < ${price} ORDER BY PREIS ASC`);
 
         const products: HardwareInt[] = result.recordset.map((row: any) => {
             return {
@@ -84,7 +89,7 @@ export async function updateProduct(item: HardwareInt) {
     try {
         pool = await sql.connect(dbConfig);
         await pool.request().query(
-            `UPDATE ARTIKELTABLE SET 
+            `UPDATE Produkte_Jonas SET 
                 BEZEICH = '${item.BEZEICH}', 
                 BESCHREIBUNG = '${item.BESCHREIBUNG}', 
                 SERIENNR = '${item.SERIENNR}', 

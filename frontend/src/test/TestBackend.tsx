@@ -12,7 +12,10 @@ const TestBackend = () => {
 
         console.log(rangeValue);
 
+
         ProductService.getProductsByPrice(rangeValue);
+
+        console.log(ProductService.getProducts());
     };
 
     return (

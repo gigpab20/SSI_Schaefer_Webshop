@@ -43,7 +43,7 @@ const HardwareCard: React.FC<{ hardwareItem: HardwareProps }> = ({ hardwareItem 
                 <p className="text-body">{`ID: ${hardwareItem.item.ANLAGENNR}`}</p>
                 <p className="text-body">{`Preis: ${hardwareItem.item.PREIS}€`}</p>
                 <button className="btn-reserve card-button" onClick={handleReservation}>
-                    <a href={`mailto:gigpab20@htl-kaindorf.at?subject=Reservierung: ${hardwareItem.item.ARTIKELNR}`} className="email-link">
+                    <a href={`mailto:theresa.doppelhofer@ssi-schaefer.com?subject=Reservierung: ${hardwareItem.item.ARTIKELNR}`} className="email-link">
                         Reservieren
                     </a>
                 </button>

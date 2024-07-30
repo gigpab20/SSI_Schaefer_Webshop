@@ -26,6 +26,7 @@ function TestAdminPanel() {
         const token = localStorage.getItem('authToken');
         if (!token) {
             navigate('/');
+
         } else {
             const products = MockData.getMockHardwareData(); // Verwenden Sie Mock-Daten
             console.log("Products loaded: ", products);
