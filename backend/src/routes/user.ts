@@ -10,18 +10,21 @@ Auftrag:
 
  */
 
-import * as express from 'express';
-import * as bcrypt from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
-import { findUserByUsername } from '../src/mockdata/mockdata'; // Korrigieren Sie den Pfad zu mockdata
-import * as dotenv from 'dotenv';
+
+// backend/src/routes/user.ts
+
+import express, { Request, Response } from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { findUserByUsername } from '../mockdata/mockdata';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 
-router.post('/login', (req: express.Request, res: express.Response) => {
+router.post('/login', (req: Request, res: Response) => {
     const { username, password } = req.body;
     const user = findUserByUsername(username);
     if (!user || !bcrypt.compareSync(password, user.password)) {
@@ -32,5 +35,4 @@ router.post('/login', (req: express.Request, res: express.Response) => {
 });
 
 export default router;
-
 

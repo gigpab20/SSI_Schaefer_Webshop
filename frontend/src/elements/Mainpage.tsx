@@ -3,10 +3,10 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { HardwareInt } from '../../src/interface/HardwareInt';
 import Header from './Header';
-import { MockData } from '../../src/mockdata/MockData';
 import Grid from './Grid';
 import Footer from './Footer';
 import '../../src/stylesheets/mainPage.css';
+import { ProductService } from '../Service/ProductService';
 
 const Mainpage = () => {
     const [hardware, setHardware] = useState<HardwareInt[]>([]);
@@ -14,8 +14,15 @@ const Mainpage = () => {
     const [priceRangeValue, setPriceRangeValue] = useState(0);
 
     useEffect(() => {
-        const data = MockData.getMockHardwareData();
-        setHardware(data);
+        const fetchHardwareData = async () => {
+            try {
+                const data = await ProductService.getProducts();
+                setHardware(data);
+            } catch (error) {
+                console.error('Error fetching hardware data:', error);
+            }
+        };
+        fetchHardwareData();
     }, []);
 
     const handleSortChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -24,14 +31,18 @@ const Mainpage = () => {
     };
 
     const handleRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
-        if (!(parseInt(event.target.value).toString() === "NaN")) {
+        if (!isNaN(parseInt(event.target.value))) {
             setPriceRangeValue(parseInt(event.target.value));
         }
     };
 
-    const onFilterPrice = () => {
-        const filtered = MockData.getMockHardwareData().filter(item => parseFloat(item.PREIS || "0") < priceRangeValue);
-        setHardware(filtered);
+    const onFilterPrice = async () => {
+        try {
+            const data = await ProductService.getProductsByPrice(priceRangeValue);
+            setHardware(data);
+        } catch (error) {
+            console.error('Error filtering hardware by price:', error);
+        }
     };
 
     const sortItems = (option: string) => {

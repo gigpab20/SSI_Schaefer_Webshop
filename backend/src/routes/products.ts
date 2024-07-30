@@ -1,7 +1,6 @@
-// backend/src/routes/products.ts
-import { Request, Response } from 'express';
-import { getAll, getAllInPrice, updateProduct, reserveHardware, returnHardware, getHardwareTransactions } from '../src/db/util.service.db';
-import express = require('express');
+import express, { Request, Response } from 'express';
+import { getAll, getAllInPrice, updateProduct, reserveHardware, returnHardware, getHardwareTransactions } from '../db/util.service.db';
+import { HardwareInt } from '../model/HardwareInt';
 
 const router = express.Router();
 

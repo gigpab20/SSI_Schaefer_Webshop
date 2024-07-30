@@ -1,3 +1,24 @@
+/*
+
+Auftrag:
+Eigene Karte wo die wichtigsten Produktdetails angezeigt werden, Mail schicken was die wichtigsten sachen sind, und ob es ein Foto gibt
+Antwort: kein Foto, Artikelnummer, Bezeichnung, Anlagennummer & Preis
+
+nächste Frage:
+
+Abwicklung bei Reservieren klick:
+
+Antwort:
+"Variante1: Automatische Erstellung eines Tickets im Ticketsystem (schätze ich sehr aufwändig ein, wäre die Beste Lösung)
+Variante2: Daten werden im Portal vom User eingesehen, dieser legt dann händisch ein Ticket mit diesen Daten an (wie es bisher auch der Fall war, völlig ausreichend)
+Für mich wäre beides in Ordnung, würde mich nach euren Möglichkeiten richten.
+Zusatz: Option ein Gerät zu reservieren um doppelte Anfragen zu verhindern."
+
+wir nehmen Variante 2 aber mit dem Zusatz (Idee von Paul) eine Email an die Buchhaltung, automatisch, nach dem Reservier-Klick per mailTo methode
+
+ */
+
+
 import React, { useState } from 'react';
 import '../../src/stylesheets/hardwareCard.css';
 import { HardwareInt } from "../../src/interface/HardwareInt";

@@ -1,3 +1,17 @@
+/*
+
+Auftrag:
+"Bestenfalls per SSO über die peemdomain"
+-> per react sehr schwer @Paul und @David Kohlweg oder Paulus fragen ob das überhaupt geht
+
+-> antwort: zu spät gefragt, hätte zu lange gedauert -> kann jonas beim praktikum maybe tryen
+
+-_-
+
+ */
+
+// backend/src/mockdata/mockdata.ts
+
 import bcrypt from 'bcryptjs';
 
 export interface UserModel {

@@ -4,8 +4,11 @@ import { HardwareInt } from "../model/HardwareInt";
 const dbConfig: sql.config = {
     user: 'PEEMDOMAIN\\jbn',
     password: 'ssigraz0815!',
-    server: 'atgradbtst01',
-    database: 'AMS_GRA'
+    server: 'atgradbtst01.peemdomain.at',
+    database: 'AMS_GRA',
+    options: {
+        encrypt: false // true bei Azure
+    }
 };
 
 export const connectDB = async () => {
@@ -21,21 +24,25 @@ export const getAll = async () => {
     let pool: sql.ConnectionPool | null = null;
     try {
         pool = await sql.connect(dbConfig);
-        const result = await pool.request().query('SELECT * FROM ARTIKELTABLE ORDER BY PREIS ASC');
+        const result = await pool.request().query('SELECT * FROM Produkte ORDER BY Preis ASC');
+
+        console.log(result.recordset);  // Debugging-Ausgabe
 
         const hardwareData: HardwareInt[] = result.recordset.map((row: any) => {
             return {
-                ARTIKELNR: row.ARTIKELNR,
-                BEZEICH: row.BEZEICH,
-                BESCHREIBUNG: row.BESCHREIBUNG,
-                SERIENNR: row.SERIENNR,
-                ANLAGENNR: row.ANLAGENNR,
-                WE_DATUM: row.WE_DATUM,
-                PREIS: row.PREIS,
-                KOMMENTAR: row.KOMMENTAR,
-                RESERVIERT: row.RESERVIERT
+                ARTIKELNR: row.ArtikelNr,
+                BEZEICH: row.Bezeich,
+                BESCHREIBUNG: row.Beschreibung,
+                SERIENNR: row.SerienNr,
+                ANLAGENNR: row.AnlagenNr,
+                WE_DATUM: row.WE_Datum,
+                PREIS: row.Preis,
+                KOMMENTAR: row.Kommentar,
+                RESERVIERT: row.Reserviert
             };
         });
+
+        console.log(hardwareData);  // Debugging-Ausgabe
 
         return hardwareData;
     } catch (error) {
@@ -52,19 +59,19 @@ export const getAllInPrice = async (price: number) => {
     let pool: sql.ConnectionPool | null = null;
     try {
         pool = await sql.connect(dbConfig);
-        const result = await pool.request().query(`SELECT * FROM ARTIKELTABLE WHERE PREIS < ${price} ORDER BY PREIS ASC`);
+        const result = await pool.request().query(`SELECT * FROM Produkte WHERE Preis < ${price} ORDER BY Preis ASC`);
 
         const products: HardwareInt[] = result.recordset.map((row: any) => {
             return {
-                ARTIKELNR: row.ARTIKELNR,
-                BEZEICH: row.BEZEICH,
-                BESCHREIBUNG: row.BESCHREIBUNG,
-                SERIENNR: row.SERIENNR,
-                ANLAGENNR: row.ANLAGENNR,
-                WE_DATUM: row.WE_DATUM,
-                PREIS: row.PREIS,
-                KOMMENTAR: row.KOMMENTAR,
-                RESERVIERT: row.RESERVIERT
+                ARTIKELNR: row.ArtikelNr,
+                BEZEICH: row.Bezeich,
+                BESCHREIBUNG: row.Beschreibung,
+                SERIENNR: row.SerienNr,
+                ANLAGENNR: row.AnlagenNr,
+                WE_DATUM: row.WE_Datum,
+                PREIS: row.Preis,
+                KOMMENTAR: row.Kommentar,
+                RESERVIERT: row.Reserviert
             };
         });
 
@@ -84,14 +91,14 @@ export async function updateProduct(item: HardwareInt) {
     try {
         pool = await sql.connect(dbConfig);
         await pool.request().query(
-            `UPDATE ARTIKELTABLE SET 
-                BEZEICH = '${item.BEZEICH}', 
-                BESCHREIBUNG = '${item.BESCHREIBUNG}', 
-                SERIENNR = '${item.SERIENNR}', 
-                WE_DATUM = '${item.WE_DATUM}', 
-                KOMMENTAR = '${item.KOMMENTAR}', 
-                RESERVIERT = 1 
-            WHERE ARTIKELNR = '${item.ARTIKELNR}'`
+            `UPDATE Produkte SET
+                                 Bezeich = '${item.BEZEICH}',
+                                 Beschreibung = '${item.BESCHREIBUNG}',
+                                 SerienNr = '${item.SERIENNR}',
+                                 WE_Datum = '${item.WE_DATUM}',
+                                 Kommentar = '${item.KOMMENTAR}',
+                                 Reserviert = 1
+             WHERE ArtikelNr = '${item.ARTIKELNR}'`
         );
         await pool.request().query("COMMIT");
     } catch (error) {

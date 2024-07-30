@@ -1,3 +1,15 @@
+/*
+
+Auftrag:
+"Bestenfalls per SSO über die peemdomain"
+-> per react sehr schwer @Paul und @David Kohlweg oder Paulus fragen ob das überhaupt geht
+
+-> antwort: zu spät gefragt, hätte zu lange gedauert -> kann jonas beim praktikum maybe tryen
+
+-_-
+
+ */
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';

@@ -1,3 +1,15 @@
+/*
+*
+*SCHULDb verwenden, da wir von SSI es nicht dürfen
+*
+*
+*
+*
+*
+*
+*
+* */
+
 import { HardwareInt } from "../interface/HardwareInt";
 
 export class MockData {
