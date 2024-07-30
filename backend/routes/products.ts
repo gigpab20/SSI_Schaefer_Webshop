@@ -1,8 +1,8 @@
-import express, { Router, Request, Response } from "express";
-import { getAll, getAllInPrice, updateProduct, reserveHardware, returnHardware, getHardwareTransactions } from "../src/db/util.service.db";
-import { HardwareInt } from "../src/model/HardwareInt";
+import express, { Request, Response } from 'express';
+import { getAll, getAllInPrice, updateProduct, reserveHardware, returnHardware, getHardwareTransactions } from '../src/db/util.service.db';
+import { HardwareInt } from '../src/model/HardwareInt';
 
-let router = express.Router();
+const router = express.Router();
 
 router.get('/', async (req: Request, res: Response) => {
   try {
@@ -26,7 +26,7 @@ router.get('/:price', async (req: Request, res: Response) => {
 });
 
 router.patch('/', async (req: Request, res: Response) => {
-  const item = req.body.item;
+  const item: HardwareInt = req.body.item;
   try {
     await updateProduct(item);
     res.sendStatus(200);
@@ -70,4 +70,4 @@ router.get('/transactions', async (req: Request, res: Response) => {
   }
 });
 
-module.exports = router;
+export default router;
